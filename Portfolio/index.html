@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Étudiant BTS SIO</title>
+    <meta name="description" content="Portfolio d'étudiant en BTS SIO option SLAM. Projets Web, C#, et veille technologique.">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ton-site.com/">
+    <meta property="og:title" content="Portfolio BTS SIO - Développeur">
+    <meta property="og:description" content="Découvrez mes projets et mes compétences en développement Web et Application.">
+    <meta property="og:image" content="preview.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Portfolio BTS SIO - Développeur">
+    <meta property="twitter:description" content="Découvrez mes projets et mes compétences en développement Web et Application.">
+    <meta property="twitter:image" content="preview.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Portfolio<span style="color:var(--accent-color)">.GP</span></div>
+            
+            <ul class="nav-links">
+                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                <li><a href="#cv" class="nav-link">Parcours</a></li>
+                <li><a href="#services" class="nav-link">Expertise</a></li>
+                <li><a href="#projets" class="nav-link">Projets</a></li>
+                <li><a href="#veille" class="nav-link">Veille</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button id="theme-toggle">🌙</button></li>
+            </ul>
+
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="accueil">
+        <div class="background-animation">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="gradient-text">Développeur en devenir</h1>
+            <div class="description" id="typewriter"></div>
+            
+            <div class="social-links">
+                <a href="https://github.com" target="_blank" class="social-btn github">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv" class="reveal">
+        <h2><i class="fas fa-graduation-cap"></i> Mon Parcours</h2>
+        <div class="cv-container">
+            
+            <div class="cv-column">
+                <h3>Formation</h3>
+                
+                <div class="cv-item">
+                    <span class="date">Depuis 2025</span>
+                    <h4>BTS SIO (Option SLAM)</h4>
+                    <p>Lycée René Cassin, Strasbourg.</p>
+                </div>
+
+                <div class="cv-item">
+                    <span class="date">2023 - 2025</span>
+                    <h4>Baccalauréat STI2D</h4>
+                    <p>Lycée de Haguenau (Option SIN).</p>
+                </div>
+                
+                <div class="cv-item">
+                    <span class="date">2022 - 2023</span>
+                    <h4>Seconde Générale et Technologique</h4>
+                    <p>Lycée de Haguenau (Option SI).</p>
+                </div>
+
+                <h3 style="margin-top: 40px;">Certifications</h3>
+                
+                <div class="cv-item" style="border-left-color: var(--accent-color);">
+                    <span class="date">2024</span>
+                    <h4>SecNumAcadémie (ANSSI)</h4> 
+                    <p>Sensibilisation à la sécurité informatique.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="certificat-anssi.pdf" target="_blank" style="
+                            display: inline-flex; align-items: center; gap: 10px; 
+                            background: var(--bg-color); border: 1px solid rgba(0,0,0,0.1); 
+                            padding: 8px 15px; border-radius: 8px; font-weight: 600; 
+                            font-size: 0.9rem; color: var(--text-color); transition: all 0.3s;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.05);" 
+                            onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='var(--accent-color)'" 
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(0,0,0,0.1)'">
+                            <i class="fas fa-file-pdf" style="color: #e74c3c; font-size: 1.2rem;"></i> 
+                            Voir l'attestation
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cv-item" style="border-left-color: #00bceb;">
+                    <span class="date">2024</span>
+                    <h4>Computer Hardware Basics</h4> 
+                    <p>Cisco Networking Academy.</p>
+                    <div style="margin-top: 15px;">
+                        <img src="badge.png" alt="Badge Cisco" style="
+                            width: 100px; height: auto; cursor: pointer;
+                            transition: transform 0.3s ease; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));" 
+                            title="Badge officiel Cisco"
+                            onmouseover="this.style.transform='scale(1.1)'" 
+                            onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-column">
+                <h3>Compétences Techniques</h3>
+                <div class="skills-grid">
+                    <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
+                    <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                    <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="skill-tag"><i class="fab fa-php"></i> PHP</span>
+                    <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
+                    <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                    <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+                    <span class="skill-tag"><i class="fab fa-linux"></i> Linux</span>
+                    <span class="skill-tag"><i class="fab fa-windows"></i> C#</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="cv-download">
+            <a href="mon-cv.pdf" class="btn-cv" target="_blank" download>
+                <i class="fas fa-download"></i> Télécharger mon CV
+            </a>
+        </div>
+    </section>
+
+    <section id="services" class="reveal">
+        <h2><i class="fas fa-laptop-code"></i> Domaines d'Expertise</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-globe"></i></div>
+                <h3>Développement Web</h3>
+                <p>Conception de sites vitrines et d'applications web dynamiques.</p>
+                <ul class="service-list">
+                    <li>Site Responsive (Mobile First)</li>
+                    <li>HTML / CSS / JS</li>
+                    <li>Architecture MVC (PHP)</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-desktop"></i></div>
+                <h3>Logiciels & App</h3>
+                <p>Développement d'applications lourdes et scripts d'automatisation.</p>
+                <ul class="service-list">
+                    <li>Applications Windows (C#)</li>
+                    <li>Algorithmie (Python)</li>
+                    <li>Gestion de données</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-server"></i></div>
+                <h3>Outils & Système</h3>
+                <p>Mise en place d'environnements de développement.</p>
+                <ul class="service-list">
+                    <li>Gestion de versions (Git)</li>
+                    <li>Environnement Linux</li>
+                    <li>Requêtes SQL complexes</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="reveal">
+        <h2><i class="fas fa-code"></i> Mes Projets</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="app">Logiciel</button>
+        </div>
+        <div class="projets-container" id="projets-grid"></div>
+    </section>
+
+    <section id="veille" class="reveal">
+        <h2><i class="fas fa-rss"></i> Veille Technologique</h2>
+        <div class="veille-grid" id="rss-feed-container"></div>
+        <h3 style="margin-top:40px;">Sujet : Architecture & Sécurité</h3>
+        <div class="veille-grid" id="history-container"></div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <h2><i class="fas fa-envelope"></i> Me Contacter</h2>
+        <div class="contact-container">
+            <form id="my-form" action="https://formspree.io/f/mvzzpopd" method="POST"> 
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit" id="my-form-button">Envoyer</button>
+                <p id="my-form-status" style="margin-top:15px; font-weight:bold;"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> - Étudiant BTS SIO - Strasbourg.</p>
+    </footer>
+
+    <button id="scrollToTopBtn">↑</button>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+            <a href="#" id="modal-link" class="btn-details" target="_blank">Voir le code</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
