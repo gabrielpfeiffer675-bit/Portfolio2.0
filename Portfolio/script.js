@@ -100,10 +100,30 @@ scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior:
 // --- 6. GESTION DES PROJETS ---
 const mesProjets = [
     {
+        id: "freelance-web",
+        titre: "Création Sites Web (Freelance)",
+        categorie: "web", // Catégorie Web
+        image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        tags: ["Micro-entreprise", "Wordpress", "SEO", "Relation Client"],
+        description_courte: "Services de création web pour professionnels.",
+        description_longue: "Lancement de ma micro-entreprise de développement web. J'accompagne des artisans et PME dans leur transition numérique : analyse des besoins, création de sites vitrines sur-mesure ou via CMS, et optimisation pour le référencement (SEO).",
+        lien: "#contact" // Redirige vers ton formulaire de contact ou ton site pro si tu en as un
+    },
+    {
+        id: "serre-iot",
+        titre: "Serre Autonome Connectée",
+        categorie: "app", // On le met dans "Logiciel/App" car c'est de la prog embarquée
+        image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        tags: ["C++", "ESP32", "Raspberry Pi", "IoT"],
+        description_courte: "Système de régulation automatique de luminosité.",
+        description_longue: "Projet de Terminale STI2D (SIN). Conception d'une serre autonome. J'ai été chargé de la programmation C++ sur carte ESP32 : lecture des capteurs de luminosité en temps réel et pilotage automatique de l'éclairage artificiel. Transmission des données via Wi-Fi vers un Raspberry Pi centralisateur.",
+        lien: "https://github.com/gabrielpfeiffer675-bit" // Mets le lien vers le code si tu l'as, sinon ton GitHub général
+    },
+    {
         id: "stock-web",
         titre: "Gestion de Stock",
         categorie: "web",
-        image: "https://source.unsplash.com/random/400x300/?warehouse",
+        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         tags: ["PHP", "MVC", "MySQL"],
         description_courte: "Application web de gestion logistique complète.",
         description_longue: "Développement d'une solution complète pour la gestion des entrées/sorties de stock. Utilisation de l'architecture MVC pour séparer la logique métier de l'affichage. Base de données relationnelle MySQL avec gestion des clés étrangères.",
@@ -113,11 +133,11 @@ const mesProjets = [
         id: "calc-csharp",
         titre: "Calculatrice Scientifique",
         categorie: "app",
-        image: "https://source.unsplash.com/random/400x300/?calculator",
+        image: "https://images.unsplash.com/photo-1587145820266-a5951ee1f620?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         tags: ["C#", "WinForms", ".NET"],
         description_courte: "Calculatrice scientifique avec historique.",
         description_longue: "Application lourde Windows développée en C#. Implémentation de la notation polonaise inverse (RPN) pour la gestion des priorités de calcul. Sauvegarde de l'historique dans un fichier local.",
-        lien: "https://github.com/ton-profil/repo-calc"
+        lien: "https://github.com/gabrielpfeiffer675-bit"
     }
 ];
 
