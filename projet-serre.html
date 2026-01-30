@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Serre Autonome - IoT</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Styles spécifiques pour la mise en page projet */
+        .project-header {
+            padding-top: 120px; text-align: center; margin-bottom: 60px;
+        }
+        .project-content {
+            background: var(--card-bg); padding: 40px; border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px;
+        }
+        .project-meta {
+            display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;
+        }
+        .meta-item {
+            background: rgba(0, 200, 83, 0.1); color: #00c853; /* Vert pour rappeler la nature/serre */
+            padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;
+        }
+        .screenshot-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;
+        }
+        .screenshot-box {
+            border: 2px dashed rgba(0,0,0,0.1); border-radius: 10px; min-height: 200px;
+            display: flex; align-items: center; justify-content: center; color: #888;
+            flex-direction: column; text-align: center; padding: 20px;
+        }
+        .screenshot-box img { width: 100%; border-radius: 8px; }
+        
+        /* Style pour le bloc de code */
+        .code-block {
+            background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace; overflow-x: auto; font-size: 0.85rem;
+            margin: 20px 0; border-left: 4px solid #00c853; line-height: 1.5;
+        }
+        .comment { color: #6a9955; }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Portfo<span style="color:var(--accent-color)">lio.</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">← Retour à l'accueil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="project-header">
+            <h1 class="gradient-text">Serre Autonome Connectée</h1>
+            <div class="project-meta">
+                <span class="meta-item"><i class="fas fa-microchip"></i> IoT & Embarqué</span>
+                <span class="meta-item"><i class="fas fa-network-wired"></i> MQTT</span>
+                <span class="meta-item"><i class="fas fa-leaf"></i> Projet STI2D</span>
+            </div>
+            <p style="max-width: 700px; margin: 0 auto;">
+                Conception d'un système de régulation automatique pour une serre.
+                Communication Machine-to-Machine (M2M) entre un ESP32 et un Raspberry Pi.
+            </p>
+        </div>
+
+        <div class="project-content reveal">
+            <h2><i class="fas fa-project-diagram"></i> Architecture du Système</h2>
+            <p>Le projet repose sur une architecture distribuée utilisant le protocole léger MQTT. Mon rôle était de gérer la luminosité.</p>
+            
+            <ul style="margin-top: 20px; list-style-type: none;">
+                <li style="margin-bottom: 10px;">✅ <strong>Capteur :</strong> Photorésistance (LDR) pour mesurer les Lux.</li>
+                <li style="margin-bottom: 10px;">✅ <strong>Contrôleur :</strong> ESP32 (Programmé en C++) qui traite le signal analogique.</li>
+                <li style="margin-bottom: 10px;">✅ <strong>Actionneur :</strong> Relais pilotant un bandeau LED horticole.</li>
+                <li style="margin-bottom: 10px;">✅ <strong>Supervision :</strong> Dashboard Node-RED hébergé sur Raspberry Pi.</li>
+            </ul>
+
+            <h2 style="margin-top: 40px;"><i class="fas fa-images"></i> Galerie & Schémas</h2>
+            <p>Voici les photos du montage et de l'interface de supervision (IHM).</p>
+            
+            <div class="screenshot-grid">
+                <div class="screenshot-box">
+                    <img src="https://source.unsplash.com/random/400x300/?greenhouse" alt="Photo de la serre">
+                    <p style="margin-top:10px; font-size:0.8rem;">La serre en fonctionnement</p>
+                </div>
+                <div class="screenshot-box">
+                    <img src="https://source.unsplash.com/random/400x300/?dashboard" alt="Dashboard Node-RED">
+                    <p style="margin-top:10px; font-size:0.8rem;">Interface Node-RED (IHM)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content reveal">
+            <h2><i class="fas fa-code"></i> Code Embarqué (ESP32)</h2>
+            <p>Voici le programme C++ téléversé dans le microcontrôleur. Il gère la connexion WiFi, la souscription MQTT pour recevoir le seuil réglé par l'utilisateur, et la publication des données capteurs.</p>
+
+            <div class="code-block">
+<span class="keyword">#include</span> &lt;WiFi.h&gt;
+<span class="keyword">#include</span> &lt;PubSubClient.h&gt;
+
+<span class="comment">// ----------- WiFi -----------</span>
+<span class="keyword">const</span> <span class="keyword">char</span>* ssid = <span class="string">"TON_WIFI"</span>;
+<span class="keyword">const</span> <span class="keyword">char</span>* password = <span class="string">"TON_MDP"</span>;
+
+<span class="comment">// ----------- MQTT -----------</span>
+<span class="keyword">const</span> <span class="keyword">char</span>* mqtt_server = <span class="string">"IP_DU_RASPBERRY"</span>;
+<span class="keyword">const</span> <span class="keyword">int</span> mqtt_port = 1883;
+
+<span class="keyword">const</span> <span class="keyword">char</span>* topic_lux = <span class="string">"esp32/ldr"</span>;
+<span class="keyword">const</span> <span class="keyword">char</span>* topic_seuil = <span class="string">"esp32/seuil"</span>;
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+<span class="comment">// ----------- Broches & Variables -----------</span>
+<span class="keyword">const</span> <span class="keyword">int</span> LDR_PIN = 34;
+<span class="keyword">const</span> <span class="keyword">int</span> RELAY_PIN = 26;
+
+<span class="keyword">int</span> seuil = 2000;  <span class="comment">// Valeur par défaut (modifiable via Node-RED)</span>
+<span class="keyword">int</span> adcValue = 0;
+
+<span class="comment">// ----------- MQTT Callback (Réception des messages) -----------</span>
+<span class="keyword">void</span> callback(<span class="keyword">char</span>* topic, <span class="keyword">byte</span>* payload, <span class="keyword">unsigned</span> <span class="keyword">int</span> length) {
+  String message;
+  <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < length; i++) {
+    message += (<span class="keyword">char</span>)payload[i];
+  }
+
+  <span class="comment">// Mise à jour dynamique du seuil depuis le Dashboard</span>
+  <span class="keyword">if</span> (String(topic) == topic_seuil) {
+    seuil = message.toInt();
+    Serial.print(<span class="string">"Nouveau seuil reçu : "</span>);
+    Serial.println(seuil);
+  }
+}
+
+<span class="comment">// ----------- Setup WiFi -----------</span>
+<span class="keyword">void</span> setup_wifi() {
+  delay(10);
+  WiFi.begin(ssid, password);
+  <span class="keyword">while</span> (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+  }
+}
+
+<span class="comment">// ----------- Boucle Principale -----------</span>
+<span class="keyword">void</span> loop() {
+  <span class="keyword">if</span> (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
+  adcValue = analogRead(LDR_PIN);
+
+  <span class="comment">// Publication de la luminosité sur le topic MQTT</span>
+  client.publish(topic_lux, String(adcValue).c_str());
+
+  <span class="comment">// Logique locale : Si trop sombre, on allume</span>
+  <span class="keyword">if</span> (adcValue < seuil) {
+    digitalWrite(RELAY_PIN, HIGH);
+  } <span class="keyword">else</span> {
+    digitalWrite(RELAY_PIN, LOW);
+  }
+  
+  delay(1000);
+}
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://github.com/gabrielpfeiffer675-bit" target="_blank" class="btn-details">
+                    <i class="fab fa-github"></i> Voir tout le code sur GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year">2026</span> - Gabriel Pfeiffer - BTS SIO</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

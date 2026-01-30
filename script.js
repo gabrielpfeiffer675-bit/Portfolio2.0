@@ -97,7 +97,7 @@ window.addEventListener('scroll', () => {
 });
 scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// --- 6. GESTION DES PROJETS ---
+// --- 6. GESTION DES PROJETS (MODIFIÉ) ---
 const mesProjets = [
     {
         id: "freelance-web",
@@ -107,24 +107,17 @@ const mesProjets = [
         tags: ["Micro-entreprise", "Wordpress", "SEO", "Relation Client"],
         description_courte: "Services de création web pour professionnels.",
         description_longue: "<strong>Statut :</strong> Micro-entrepreneur.<br>J'accompagne les artisans et PME dans leur transition numérique. <br>• Analyse des besoins client.<br>• Développement de sites vitrines (CMS ou sur-mesure).<br>• Optimisation SEO et formation à la prise en main.",
-        lien: "#contact"
+        lien: "#contact" 
     },
     {
         id: "serre-iot",
         titre: "Serre Autonome & IoT",
         categorie: "app",
         image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        tags: ["ESP32", "Node-RED", "MQTT", "C++", "Raspberry Pi"], // Tags mis à jour !
+        tags: ["ESP32", "Node-RED", "MQTT", "C++", "Raspberry Pi"],
         description_courte: "Système de régulation automatique via MQTT et Node-RED.",
-        description_longue: `
-            <strong>Contexte :</strong> Projet ETLV de Terminale STI2D. Conception d'une serre entièrement autonome (Luminosité, Air, Sol).<br><br>
-            <strong>Ma responsabilité : Gestion de la luminosité</strong><br>
-            • <strong>Matériel :</strong> Capteur LDR, Microcontrôleur ESP32, Bandeau LED, Raspberry Pi.<br>
-            • <strong>Communication :</strong> L'ESP32 lit les données et les transmet via Wi-Fi au Raspberry Pi en utilisant le protocole <strong>MQTT</strong>.<br>
-            • <strong>Logique & IHM :</strong> Utilisation de <strong>Node-RED</strong> pour traiter les données : si la luminosité est sous le seuil, l'éclairage s'active. Création d'un Dashboard pour la visualisation temps réel.<br><br>
-            Ce projet démontre ma capacité à lier le matériel (capteurs) et le logiciel (flux de données).
-        `,
-        lien: "https://github.com/gabrielpfeiffer675-bit"
+        description_longue: "Ce projet dispose d'une page dédiée.", 
+        lien: "projet-serre.html" // Cible la nouvelle page
     },
     {
         id: "stock-web",
@@ -134,7 +127,7 @@ const mesProjets = [
         tags: ["PHP", "MVC", "MySQL"],
         description_courte: "Application web de gestion logistique complète.",
         description_longue: "Développement d'une solution complète pour la gestion des entrées/sorties de stock.<br>• Architecture MVC pour séparer la logique métier.<br>• Base de données MySQL relationnelle.<br>• Sécurisation des accès (Sessions PHP).",
-        lien: "projet-stock.html"
+        lien: "projet-stock.html" // Cible la page existante
     },
     {
         id: "calc-csharp",
@@ -161,12 +154,19 @@ function afficherProjets(filtre = 'all') {
             card.style.animation = 'fadeIn 0.5s ease forwards';
             const tagsHtml = projet.tags.map(tag => `<li>${tag}</li>`).join('');
 
+            // LOGIQUE INTELLIGENTE POUR LE BOUTON
+            // Si le lien contient ".html", on fait un lien direct <a>
+            // Sinon, on garde le bouton <button> qui ouvre la modale
+            const boutonHtml = projet.lien && projet.lien.includes('.html') 
+                ? `<a href="${projet.lien}" class="btn-details">Voir le détail</a>`
+                : `<button class="btn-details" onclick="ouvrirModale('${projet.id}')">En savoir plus</button>`;
+
             card.innerHTML = `
                 <div class="card-image"><img src="${projet.image}" alt="${projet.titre}" loading="lazy"></div>
                 <h3>${projet.titre}</h3>
                 <ul class="tech-tags">${tagsHtml}</ul>
                 <p>${projet.description_courte}</p>
-                <button class="btn-details" onclick="ouvrirModale('${projet.id}')">En savoir plus</button>
+                ${boutonHtml}
             `;
             gridContainer.appendChild(card);
         }
@@ -185,8 +185,23 @@ window.ouvrirModale = (idProjet) => {
     const projet = mesProjets.find(p => p.id === idProjet);
     if (projet) {
         document.getElementById("modal-title").textContent = projet.titre;
+        // UTILISATION DE INNERHTML POUR LES BALISES <BR> et <STRONG>
         document.getElementById("modal-desc").innerHTML = projet.description_longue;
-        document.getElementById("modal-link").href = projet.lien;
+        
+        // Gestion du lien dans la modale (si ce n'est pas une page HTML locale)
+        const linkBtn = document.getElementById("modal-link");
+        if(projet.lien && !projet.lien.includes('.html') && projet.lien !== "#contact") {
+             linkBtn.href = projet.lien;
+             linkBtn.style.display = "inline-block";
+             linkBtn.textContent = "Voir le code / Site";
+        } else if (projet.lien === "#contact") {
+             linkBtn.href = "#contact";
+             linkBtn.textContent = "Me contacter";
+             linkBtn.onclick = () => modal.style.display = "none"; // Ferme la modale si on va au contact
+        } else {
+             linkBtn.style.display = "none";
+        }
+
         modal.style.display = "block";
     }
 };
@@ -240,16 +255,14 @@ const styleSheet = document.createElement("style");
 styleSheet.innerText = `@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }}`;
 document.head.appendChild(styleSheet);
 
-
-// --- 8. GESTION DU FORMULAIRE AJAX (NOUVEAU) ---
+// --- 8. GESTION DU FORMULAIRE AJAX ---
 const form = document.getElementById("my-form");
 
 async function handleSubmit(event) {
-    event.preventDefault(); // Empêche le rechargement de la page
+    event.preventDefault(); 
     const status = document.getElementById("my-form-status");
     const data = new FormData(event.target);
 
-    // Fetch API pour envoyer les données sans quitter la page
     fetch(event.target.action, {
         method: form.method,
         body: data,
@@ -260,7 +273,7 @@ async function handleSubmit(event) {
         if (response.ok) {
             status.innerHTML = "Merci ! Votre message a bien été envoyé.";
             status.style.color = "green";
-            form.reset(); // Vide le formulaire
+            form.reset(); 
         } else {
             response.json().then(data => {
                 if (Object.hasOwn(data, 'errors')) {
@@ -276,4 +289,6 @@ async function handleSubmit(event) {
         status.style.color = "red";
     });
 }
-form.addEventListener("submit", handleSubmit);
+if(form) {
+    form.addEventListener("submit", handleSubmit);
+}
