@@ -102,22 +102,29 @@ const mesProjets = [
     {
         id: "freelance-web",
         titre: "Création Sites Web (Freelance)",
-        categorie: "web", // Catégorie Web
+        categorie: "web",
         image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         tags: ["Micro-entreprise", "Wordpress", "SEO", "Relation Client"],
         description_courte: "Services de création web pour professionnels.",
-        description_longue: "Lancement de ma micro-entreprise de développement web. J'accompagne des artisans et PME dans leur transition numérique : analyse des besoins, création de sites vitrines sur-mesure ou via CMS, et optimisation pour le référencement (SEO).",
-        lien: "#contact" // Redirige vers ton formulaire de contact ou ton site pro si tu en as un
+        description_longue: "<strong>Statut :</strong> Micro-entrepreneur.<br>J'accompagne les artisans et PME dans leur transition numérique. <br>• Analyse des besoins client.<br>• Développement de sites vitrines (CMS ou sur-mesure).<br>• Optimisation SEO et formation à la prise en main.",
+        lien: "#contact"
     },
     {
         id: "serre-iot",
-        titre: "Serre Autonome Connectée",
-        categorie: "app", // On le met dans "Logiciel/App" car c'est de la prog embarquée
-        image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        tags: ["C++", "ESP32", "Raspberry Pi", "IoT"],
-        description_courte: "Système de régulation automatique de luminosité.",
-        description_longue: "Projet de Terminale STI2D (SIN). Conception d'une serre autonome. J'ai été chargé de la programmation C++ sur carte ESP32 : lecture des capteurs de luminosité en temps réel et pilotage automatique de l'éclairage artificiel. Transmission des données via Wi-Fi vers un Raspberry Pi centralisateur.",
-        lien: "https://github.com/gabrielpfeiffer675-bit" // Mets le lien vers le code si tu l'as, sinon ton GitHub général
+        titre: "Serre Autonome & IoT",
+        categorie: "app",
+        image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        tags: ["ESP32", "Node-RED", "MQTT", "C++", "Raspberry Pi"], // Tags mis à jour !
+        description_courte: "Système de régulation automatique via MQTT et Node-RED.",
+        description_longue: `
+            <strong>Contexte :</strong> Projet ETLV de Terminale STI2D. Conception d'une serre entièrement autonome (Luminosité, Air, Sol).<br><br>
+            <strong>Ma responsabilité : Gestion de la luminosité</strong><br>
+            • <strong>Matériel :</strong> Capteur LDR, Microcontrôleur ESP32, Bandeau LED, Raspberry Pi.<br>
+            • <strong>Communication :</strong> L'ESP32 lit les données et les transmet via Wi-Fi au Raspberry Pi en utilisant le protocole <strong>MQTT</strong>.<br>
+            • <strong>Logique & IHM :</strong> Utilisation de <strong>Node-RED</strong> pour traiter les données : si la luminosité est sous le seuil, l'éclairage s'active. Création d'un Dashboard pour la visualisation temps réel.<br><br>
+            Ce projet démontre ma capacité à lier le matériel (capteurs) et le logiciel (flux de données).
+        `,
+        lien: "https://github.com/gabrielpfeiffer675-bit"
     },
     {
         id: "stock-web",
@@ -126,7 +133,7 @@ const mesProjets = [
         image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         tags: ["PHP", "MVC", "MySQL"],
         description_courte: "Application web de gestion logistique complète.",
-        description_longue: "Développement d'une solution complète pour la gestion des entrées/sorties de stock. Utilisation de l'architecture MVC pour séparer la logique métier de l'affichage. Base de données relationnelle MySQL avec gestion des clés étrangères.",
+        description_longue: "Développement d'une solution complète pour la gestion des entrées/sorties de stock.<br>• Architecture MVC pour séparer la logique métier.<br>• Base de données MySQL relationnelle.<br>• Sécurisation des accès (Sessions PHP).",
         lien: "projet-stock.html"
     },
     {
@@ -136,7 +143,7 @@ const mesProjets = [
         image: "https://images.unsplash.com/photo-1587145820266-a5951ee1f620?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         tags: ["C#", "WinForms", ".NET"],
         description_courte: "Calculatrice scientifique avec historique.",
-        description_longue: "Application lourde Windows développée en C#. Implémentation de la notation polonaise inverse (RPN) pour la gestion des priorités de calcul. Sauvegarde de l'historique dans un fichier local.",
+        description_longue: "Application Windows développée en C# (WinForms).<br>• Gestion de la Notation Polonaise Inverse (RPN).<br>• Sauvegarde de l'historique des calculs dans un fichier local.<br>• Gestion des exceptions mathématiques.",
         lien: "https://github.com/gabrielpfeiffer675-bit"
     }
 ];
@@ -178,7 +185,7 @@ window.ouvrirModale = (idProjet) => {
     const projet = mesProjets.find(p => p.id === idProjet);
     if (projet) {
         document.getElementById("modal-title").textContent = projet.titre;
-        document.getElementById("modal-desc").textContent = projet.description_longue;
+        document.getElementById("modal-desc").innerHTML = projet.description_longue;
         document.getElementById("modal-link").href = projet.lien;
         modal.style.display = "block";
     }
