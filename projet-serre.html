@@ -3,59 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Serre Autonome - IoT</title>
+    <title>Projet Serre Autonome - IoT | Gabriel Pfeiffer</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Styles spécifiques pour la mise en page projet */
+        /* --- Styles Spécifiques à cette page --- */
         .project-header {
             padding-top: 120px; text-align: center; margin-bottom: 60px;
         }
+        
         .project-content {
             background: var(--card-bg); padding: 40px; border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px;
+            border: 1px solid rgba(0,0,0,0.05);
         }
+
+        /* Tags en haut de page */
         .project-meta {
-            display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;
         }
         .meta-item {
-            background: rgba(0, 200, 83, 0.1); color: #00c853; /* Vert pour rappeler la nature/serre */
-            padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;
+            background: rgba(46, 204, 113, 0.15); color: #27ae60; 
+            padding: 6px 18px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 8px;
         }
+
+        /* Grille pour les photos */
         .screenshot-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;
         }
-        .screenshot-box {
-            border: 2px dashed rgba(0,0,0,0.1); border-radius: 10px; min-height: 200px;
-            display: flex; align-items: center; justify-content: center; color: #888;
-            flex-direction: column; text-align: center; padding: 20px;
-        }
-        .screenshot-box img { width: 100%; border-radius: 8px; }
         
-        /* Style pour le bloc de code */
-        .code-block {
-            background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 10px;
-            font-family: 'JetBrains Mono', monospace; overflow-x: auto; font-size: 0.85rem;
-            margin: 20px 0; border-left: 4px solid #00c853; line-height: 1.5;
+        .photo-placeholder {
+            border: 3px dashed var(--accent-color); 
+            background: rgba(0,0,0,0.02);
+            border-radius: 12px;
+            min-height: 250px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--text-color); opacity: 0.7;
+            transition: 0.3s;
         }
-        .comment { color: #6a9955; }
-        .keyword { color: #569cd6; }
-        .string { color: #ce9178; }
-        .function { color: #dcdcaa; }
+        .photo-placeholder:hover { opacity: 1; border-style: solid; }
+        .photo-placeholder i { font-size: 3rem; margin-bottom: 15px; color: var(--accent-color); }
+        
+        /* Bloc de code C++ */
+        .code-window {
+            background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden;
+            margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            border-left: 5px solid #27ae60; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .code-header {
+            background: #252526; padding: 10px 15px; display: flex; align-items: center; gap: 10px;
+            border-bottom: 1px solid #333; color: #888; font-size: 0.8rem;
+        }
+        .dots { display: flex; gap: 5px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        
+        pre { margin: 0; padding: 20px; overflow-x: auto; line-height: 1.5; }
+        
+        /* Coloration syntaxique simple */
+        .cpp-keyword { color: #569cd6; } /* Bleu */
+        .cpp-string { color: #ce9178; }  /* Orange/Rouge */
+        .cpp-comment { color: #6a9955; } /* Vert */
+        .cpp-func { color: #dcdcaa; }    /* Jaune pâle */
+        .cpp-type { color: #4ec9b0; }    /* Bleu vert */
+        .cpp-num { color: #b5cea8; }     /* Vert clair */
     </style>
 </head>
 <body>
 
     <header>
         <nav class="navbar">
-            <div class="logo">Portfo<span style="color:var(--accent-color)">lio.</span></div>
+            <div class="logo">Projet<span style="color:var(--accent-color)">.Serre</span></div>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">← Retour à l'accueil</a></li>
+                <li><a href="index.html" class="nav-link">← Retour au Portfolio</a></li>
             </ul>
         </nav>
     </header>
@@ -64,128 +91,150 @@
         <div class="project-header">
             <h1 class="gradient-text">Serre Autonome Connectée</h1>
             <div class="project-meta">
-                <span class="meta-item"><i class="fas fa-microchip"></i> IoT & Embarqué</span>
-                <span class="meta-item"><i class="fas fa-network-wired"></i> MQTT</span>
-                <span class="meta-item"><i class="fas fa-leaf"></i> Projet STI2D</span>
+                <span class="meta-item"><i class="fas fa-seedling"></i> Terminale STI2D</span>
+                <span class="meta-item"><i class="fas fa-wifi"></i> IoT & MQTT</span>
+                <span class="meta-item"><i class="fas fa-microchip"></i> ESP32 & Raspberry Pi</span>
             </div>
-            <p style="max-width: 700px; margin: 0 auto;">
-                Conception d'un système de régulation automatique pour une serre.
-                Communication Machine-to-Machine (M2M) entre un ESP32 et un Raspberry Pi.
+            <p style="max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                Un système intelligent capable de gérer automatiquement les besoins vitaux des plantes (Luminosité, Hydratation, Température) sans intervention humaine.
             </p>
         </div>
 
         <div class="project-content reveal">
-            <h2><i class="fas fa-project-diagram"></i> Architecture du Système</h2>
-            <p>Le projet repose sur une architecture distribuée utilisant le protocole léger MQTT. Mon rôle était de gérer la luminosité.</p>
+            <h2><i class="fas fa-tasks"></i> Mon Rôle : Gestion de la Luminosité</h2>
+            <p>Dans ce projet de groupe (ETLV), chaque élève était responsable d'un paramètre environnemental. Ma mission était de concevoir et programmer le système d'éclairage artificiel.</p>
             
-            <ul style="margin-top: 20px; list-style-type: none;">
-                <li style="margin-bottom: 10px;">✅ <strong>Capteur :</strong> Photorésistance (LDR) pour mesurer les Lux.</li>
-                <li style="margin-bottom: 10px;">✅ <strong>Contrôleur :</strong> ESP32 (Programmé en C++) qui traite le signal analogique.</li>
-                <li style="margin-bottom: 10px;">✅ <strong>Actionneur :</strong> Relais pilotant un bandeau LED horticole.</li>
-                <li style="margin-bottom: 10px;">✅ <strong>Supervision :</strong> Dashboard Node-RED hébergé sur Raspberry Pi.</li>
+            <h3 style="margin-top: 30px; font-size: 1.2rem;">🚀 Fonctionnement technique</h3>
+            <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8;">
+                <li><strong>Capteur :</strong> Utilisation d'une photorésistance (LDR) pour mesurer les Lux ambiants.</li>
+                <li><strong>Traitement :</strong> Un microcontrôleur <strong>ESP32</strong> convertit le signal analogique en numérique.</li>
+                <li><strong>Communication :</strong> Envoi des données en Wi-Fi via le protocole <strong>MQTT</strong> vers un Raspberry Pi central.</li>
+                <li><strong>Décision :</strong> Si la luminosité est inférieure au seuil (réglable via Node-RED), le relais active le bandeau LED.</li>
             </ul>
+        </div>
 
-            <h2 style="margin-top: 40px;"><i class="fas fa-images"></i> Galerie & Schémas</h2>
-            <p>Voici les photos du montage et de l'interface de supervision (IHM).</p>
+        <div class="project-content reveal">
+            <h2><i class="fas fa-camera-retro"></i> Galerie du Projet</h2>
+            <p>Aperçu du montage électronique et de l'interface de supervision.</p>
             
             <div class="screenshot-grid">
-                <div class="screenshot-box">
-                    <img src="https://source.unsplash.com/random/400x300/?greenhouse" alt="Photo de la serre">
-                    <p style="margin-top:10px; font-size:0.8rem;">La serre en fonctionnement</p>
+                <div class="photo-placeholder">
+                    <i class="fas fa-microchip"></i>
+                    <p>Mettre ici une photo du montage<br>(ESP32 + Relais + Capteur)</p>
                 </div>
-                <div class="screenshot-box">
-                    <img src="https://source.unsplash.com/random/400x300/?dashboard" alt="Dashboard Node-RED">
-                    <p style="margin-top:10px; font-size:0.8rem;">Interface Node-RED (IHM)</p>
+
+                <div class="photo-placeholder">
+                    <i class="fas fa-chart-line"></i>
+                    <p>Mettre ici une capture d'écran<br>du Dashboard Node-RED</p>
                 </div>
             </div>
         </div>
 
         <div class="project-content reveal">
-            <h2><i class="fas fa-code"></i> Code Embarqué (ESP32)</h2>
-            <p>Voici le programme C++ téléversé dans le microcontrôleur. Il gère la connexion WiFi, la souscription MQTT pour recevoir le seuil réglé par l'utilisateur, et la publication des données capteurs.</p>
+            <h2><i class="fas fa-code"></i> Le Code Embarqué (ESP32)</h2>
+            <p>Voici le programme principal développé en C++ (Arduino Framework). Il gère la connexion Wi-Fi résiliente, la boucle MQTT et le pilotage du matériel.</p>
 
-            <div class="code-block">
-<span class="keyword">#include</span> &lt;WiFi.h&gt;
-<span class="keyword">#include</span> &lt;PubSubClient.h&gt;
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>main.cpp — ESP32</span>
+                </div>
+                <pre><code><span class="cpp-keyword">#include</span> &lt;WiFi.h&gt;
+<span class="cpp-keyword">#include</span> &lt;PubSubClient.h&gt;
 
-<span class="comment">// ----------- WiFi -----------</span>
-<span class="keyword">const</span> <span class="keyword">char</span>* ssid = <span class="string">"TON_WIFI"</span>;
-<span class="keyword">const</span> <span class="keyword">char</span>* password = <span class="string">"TON_MDP"</span>;
+<span class="cpp-comment">// ----------- Configuration WiFi -----------</span>
+<span class="cpp-keyword">const char</span>* ssid = <span class="cpp-string">"TON_WIFI"</span>;
+<span class="cpp-keyword">const char</span>* password = <span class="cpp-string">"TON_MDP"</span>;
 
-<span class="comment">// ----------- MQTT -----------</span>
-<span class="keyword">const</span> <span class="keyword">char</span>* mqtt_server = <span class="string">"IP_DU_RASPBERRY"</span>;
-<span class="keyword">const</span> <span class="keyword">int</span> mqtt_port = 1883;
+<span class="cpp-comment">// ----------- Configuration MQTT (Raspberry Pi) -----------</span>
+<span class="cpp-keyword">const char</span>* mqtt_server = <span class="cpp-string">"192.168.1.XX"</span>; <span class="cpp-comment">// IP du Raspberry</span>
+<span class="cpp-keyword">const int</span> mqtt_port = <span class="cpp-num">1883</span>;
 
-<span class="keyword">const</span> <span class="keyword">char</span>* topic_lux = <span class="string">"esp32/ldr"</span>;
-<span class="keyword">const</span> <span class="keyword">char</span>* topic_seuil = <span class="string">"esp32/seuil"</span>;
+<span class="cpp-keyword">const char</span>* topic_lux = <span class="cpp-string">"esp32/ldr"</span>;    <span class="cpp-comment">// Topic pour envoyer la lumière</span>
+<span class="cpp-keyword">const char</span>* topic_seuil = <span class="cpp-string">"esp32/seuil"</span>; <span class="cpp-comment">// Topic pour recevoir le réglage</span>
 
 WiFiClient espClient;
-PubSubClient client(espClient);
+PubSubClient <span class="cpp-func">client</span>(espClient);
 
-<span class="comment">// ----------- Broches & Variables -----------</span>
-<span class="keyword">const</span> <span class="keyword">int</span> LDR_PIN = 34;
-<span class="keyword">const</span> <span class="keyword">int</span> RELAY_PIN = 26;
+<span class="cpp-comment">// ----------- Broches Matérielles -----------</span>
+<span class="cpp-keyword">const int</span> LDR_PIN = <span class="cpp-num">34</span>;   <span class="cpp-comment">// Entrée Analogique</span>
+<span class="cpp-keyword">const int</span> RELAY_PIN = <span class="cpp-num">26</span>; <span class="cpp-comment">// Sortie vers LED</span>
 
-<span class="keyword">int</span> seuil = 2000;  <span class="comment">// Valeur par défaut (modifiable via Node-RED)</span>
-<span class="keyword">int</span> adcValue = 0;
+<span class="cpp-keyword">int</span> seuil = <span class="cpp-num">2000</span>; <span class="cpp-comment">// Valeur par défaut (modifiable via Dashboard)</span>
+<span class="cpp-keyword">int</span> adcValue = <span class="cpp-num">0</span>;
 
-<span class="comment">// ----------- MQTT Callback (Réception des messages) -----------</span>
-<span class="keyword">void</span> callback(<span class="keyword">char</span>* topic, <span class="keyword">byte</span>* payload, <span class="keyword">unsigned</span> <span class="keyword">int</span> length) {
-  String message;
-  <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < length; i++) {
-    message += (<span class="keyword">char</span>)payload[i];
-  }
+<span class="cpp-comment">// ----------- Callback MQTT (Réception des ordres) -----------</span>
+<span class="cpp-keyword">void</span> <span class="cpp-func">callback</span>(<span class="cpp-keyword">char</span>* topic, <span class="cpp-keyword">byte</span>* payload, <span class="cpp-keyword">unsigned int</span> length) {
+    String message;
+    <span class="cpp-keyword">for</span> (<span class="cpp-keyword">int</span> i = <span class="cpp-num">0</span>; i < length; i++) {
+        message += (<span class="cpp-keyword">char</span>)payload[i];
+    }
 
-  <span class="comment">// Mise à jour dynamique du seuil depuis le Dashboard</span>
-  <span class="keyword">if</span> (String(topic) == topic_seuil) {
-    seuil = message.toInt();
-    Serial.print(<span class="string">"Nouveau seuil reçu : "</span>);
-    Serial.println(seuil);
-  }
+    <span class="cpp-comment">// Si on reçoit un nouveau seuil depuis Node-RED</span>
+    <span class="cpp-keyword">if</span> (String(topic) == topic_seuil) {
+        seuil = message.<span class="cpp-func">toInt</span>();
+        Serial.<span class="cpp-func">print</span>(<span class="cpp-string">"Nouveau seuil reçu : "</span>);
+        Serial.<span class="cpp-func">println</span>(seuil);
+    }
 }
 
-<span class="comment">// ----------- Setup WiFi -----------</span>
-<span class="keyword">void</span> setup_wifi() {
-  delay(10);
-  WiFi.begin(ssid, password);
-  <span class="keyword">while</span> (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-  }
+<span class="cpp-comment">// ----------- Connexion WiFi -----------</span>
+<span class="cpp-keyword">void</span> <span class="cpp-func">setup_wifi</span>() {
+    Serial.<span class="cpp-func">print</span>(<span class="cpp-string">"Connexion au WiFi..."</span>);
+    WiFi.<span class="cpp-func">begin</span>(ssid, password);
+    <span class="cpp-keyword">while</span> (WiFi.<span class="cpp-func">status</span>() != WL_CONNECTED) {
+        <span class="cpp-func">delay</span>(<span class="cpp-num">500</span>);
+        Serial.<span class="cpp-func">print</span>(<span class="cpp-string">"."</span>);
+    }
+    Serial.<span class="cpp-func">println</span>(<span class="cpp-string">"\nWiFi connecté !"</span>);
 }
 
-<span class="comment">// ----------- Boucle Principale -----------</span>
-<span class="keyword">void</span> loop() {
-  <span class="keyword">if</span> (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-
-  adcValue = analogRead(LDR_PIN);
-
-  <span class="comment">// Publication de la luminosité sur le topic MQTT</span>
-  client.publish(topic_lux, String(adcValue).c_str());
-
-  <span class="comment">// Logique locale : Si trop sombre, on allume</span>
-  <span class="keyword">if</span> (adcValue < seuil) {
-    digitalWrite(RELAY_PIN, HIGH);
-  } <span class="keyword">else</span> {
-    digitalWrite(RELAY_PIN, LOW);
-  }
-  
-  delay(1000);
+<span class="cpp-comment">// ----------- Reconnexion Automatique MQTT -----------</span>
+<span class="cpp-keyword">void</span> <span class="cpp-func">reconnect</span>() {
+    <span class="cpp-keyword">while</span> (!client.<span class="cpp-func">connected</span>()) {
+        <span class="cpp-keyword">if</span> (client.<span class="cpp-func">connect</span>(<span class="cpp-string">"ESP32_LDR"</span>)) {
+            client.<span class="cpp-func">subscribe</span>(topic_seuil); <span class="cpp-comment">// On écoute les réglages</span>
+        } <span class="cpp-keyword">else</span> {
+            <span class="cpp-func">delay</span>(<span class="cpp-num">2000</span>);
+        }
+    }
 }
-            </div>
-            
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="https://github.com/gabrielpfeiffer675-bit" target="_blank" class="btn-details">
-                    <i class="fab fa-github"></i> Voir tout le code sur GitHub
-                </a>
+
+<span class="cpp-keyword">void</span> <span class="cpp-func">setup</span>() {
+    Serial.<span class="cpp-func">begin</span>(<span class="cpp-num">115200</span>);
+    <span class="cpp-func">pinMode</span>(RELAY_PIN, OUTPUT);
+    <span class="cpp-func">digitalWrite</span>(RELAY_PIN, LOW);
+    
+    <span class="cpp-func">setup_wifi</span>();
+    client.<span class="cpp-func">setServer</span>(mqtt_server, mqtt_port);
+    client.<span class="cpp-func">setCallback</span>(callback);
+}
+
+<span class="cpp-keyword">void</span> <span class="cpp-func">loop</span>() {
+    <span class="cpp-keyword">if</span> (!client.<span class="cpp-func">connected</span>()) <span class="cpp-func">reconnect</span>();
+    client.<span class="cpp-func">loop</span>();
+
+    <span class="cpp-comment">// 1. Lecture du capteur</span>
+    adcValue = <span class="cpp-func">analogRead</span>(LDR_PIN);
+
+    <span class="cpp-comment">// 2. Envoi vers Raspberry Pi (MQTT)</span>
+    client.<span class="cpp-func">publish</span>(topic_lux, String(adcValue).<span class="cpp-func">c_str</span>());
+
+    <span class="cpp-comment">// 3. Automatisme local (Sécurité)</span>
+    <span class="cpp-keyword">if</span> (adcValue < seuil) {
+        <span class="cpp-func">digitalWrite</span>(RELAY_PIN, HIGH); <span class="cpp-comment">// Allumer LED</span>
+    } <span class="cpp-keyword">else</span> {
+        <span class="cpp-func">digitalWrite</span>(RELAY_PIN, LOW);  <span class="cpp-comment">// Éteindre LED</span>
+    }
+    
+    <span class="cpp-func">delay</span>(<span class="cpp-num">1000</span>);
+}</code></pre>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; <span id="year">2026</span> - Gabriel Pfeiffer - BTS SIO</p>
+        <p>&copy; 2026 - Gabriel Pfeiffer - Portfolio BTS SIO</p>
     </footer>
 
     <script src="script.js"></script>
