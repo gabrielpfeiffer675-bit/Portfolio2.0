@@ -7,17 +7,19 @@ if (currentTheme) {
     body.setAttribute('data-theme', currentTheme);
     if (currentTheme === 'dark') toggleBtn.textContent = '☀️';
 }
-toggleBtn.addEventListener('click', () => {
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        toggleBtn.textContent = '🌙';
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        toggleBtn.textContent = '☀️';
-        localStorage.setItem('theme', 'dark');
-    }
-});
+if(toggleBtn){
+    toggleBtn.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            toggleBtn.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            toggleBtn.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
 
 // --- 2. MENU BURGER & NAVIGATION ---
 const burger = document.querySelector('.burger');
@@ -33,7 +35,7 @@ if(burger){
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        nav.classList.remove('nav-active');
+        if(nav) nav.classList.remove('nav-active');
         if(burger) burger.classList.remove('toggle');
     });
 });
@@ -65,7 +67,7 @@ const textToType = "Passionné par le développement, j'habite à Haguenau et je
 const typewriterElement = document.getElementById('typewriter');
 let i = 0;
 function typeWriter() {
-    if (i < textToType.length) {
+    if (typewriterElement && i < textToType.length) {
         typewriterElement.textContent += textToType.charAt(i);
         i++;
         setTimeout(typeWriter, 30);
@@ -89,15 +91,19 @@ const observer = new IntersectionObserver((entries) => {
 revealElements.forEach(el => observer.observe(el));
 
 window.addEventListener('scroll', () => {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollTopBtn.style.display = "block";
-    } else {
-        scrollTopBtn.style.display = "none";
+    if (scrollTopBtn) {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
     }
 });
-scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+if(scrollTopBtn){
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
 
-// --- 6. GESTION DES PROJETS (MODIFIÉ) ---
+// --- 6. GESTION DES PROJETS ---
 const mesProjets = [
     {
         id: "freelance-web",
@@ -117,7 +123,7 @@ const mesProjets = [
         tags: ["ESP32", "Node-RED", "MQTT", "C++", "Raspberry Pi"],
         description_courte: "Système de régulation automatique via MQTT et Node-RED.",
         description_longue: "Ce projet dispose d'une page dédiée.", 
-        lien: "projet-serre.html" // Cible la nouvelle page
+        lien: "projet-serre.html" 
     },
     {
         id: "stock-web",
@@ -127,7 +133,7 @@ const mesProjets = [
         tags: ["PHP", "MVC", "MySQL"],
         description_courte: "Application web de gestion logistique complète.",
         description_longue: "Développement d'une solution complète pour la gestion des entrées/sorties de stock.<br>• Architecture MVC pour séparer la logique métier.<br>• Base de données MySQL relationnelle.<br>• Sécurisation des accès (Sessions PHP).",
-        lien: "projet-stock.html" // Cible la page existante
+        lien: "projet-stock.html" 
     },
     {
         id: "calc-csharp",
@@ -145,6 +151,9 @@ const gridContainer = document.getElementById('projets-grid');
 const modal = document.getElementById("project-modal");
 
 function afficherProjets(filtre = 'all') {
+    // SÉCURITÉ : Si on est sur une page sans grille de projet (ex: projet-serre.html), on arrête.
+    if (!gridContainer) return;
+
     gridContainer.innerHTML = ''; 
     mesProjets.forEach(projet => {
         if (filtre === 'all' || projet.categorie === filtre) {
@@ -154,9 +163,7 @@ function afficherProjets(filtre = 'all') {
             card.style.animation = 'fadeIn 0.5s ease forwards';
             const tagsHtml = projet.tags.map(tag => `<li>${tag}</li>`).join('');
 
-            // LOGIQUE INTELLIGENTE POUR LE BOUTON
-            // Si le lien contient ".html", on fait un lien direct <a>
-            // Sinon, on garde le bouton <button> qui ouvre la modale
+            // LOGIQUE DU BOUTON : Si c'est un lien .html, on fait un lien <a>. Sinon un bouton <button>
             const boutonHtml = projet.lien && projet.lien.includes('.html') 
                 ? `<a href="${projet.lien}" class="btn-details">Voir le détail</a>`
                 : `<button class="btn-details" onclick="ouvrirModale('${projet.id}')">En savoir plus</button>`;
@@ -185,10 +192,9 @@ window.ouvrirModale = (idProjet) => {
     const projet = mesProjets.find(p => p.id === idProjet);
     if (projet) {
         document.getElementById("modal-title").textContent = projet.titre;
-        // UTILISATION DE INNERHTML POUR LES BALISES <BR> et <STRONG>
+        // INNERHTML pour gérer les balises <br> et <strong>
         document.getElementById("modal-desc").innerHTML = projet.description_longue;
         
-        // Gestion du lien dans la modale (si ce n'est pas une page HTML locale)
         const linkBtn = document.getElementById("modal-link");
         if(projet.lien && !projet.lien.includes('.html') && projet.lien !== "#contact") {
              linkBtn.href = projet.lien;
@@ -197,58 +203,66 @@ window.ouvrirModale = (idProjet) => {
         } else if (projet.lien === "#contact") {
              linkBtn.href = "#contact";
              linkBtn.textContent = "Me contacter";
-             linkBtn.onclick = () => modal.style.display = "none"; // Ferme la modale si on va au contact
+             linkBtn.onclick = () => { if(modal) modal.style.display = "none"; };
         } else {
              linkBtn.style.display = "none";
         }
 
-        modal.style.display = "block";
+        if(modal) modal.style.display = "block";
     }
 };
-document.querySelector(".close-modal").onclick = () => modal.style.display = "none";
+
+if(document.querySelector(".close-modal")) {
+    document.querySelector(".close-modal").onclick = () => modal.style.display = "none";
+}
 window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
 
+// Lancer l'affichage
 afficherProjets('all');
 
 // --- 7. VEILLE & RSS ---
 const rssContainer = document.getElementById('rss-feed-container');
-const rssUrl = 'https://www.journalduhacker.net/rss'; 
-fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
-    .then(r => r.json())
-    .then(data => {
-        if(data.items) {
-            data.items.slice(0, 2).forEach(item => {
-                const card = document.createElement('article');
-                card.className = 'veille-card';
-                card.innerHTML = `
-                    <h3>${item.title}</h3>
-                    <div class="meta" style="color:var(--accent-color);font-size:0.9rem;margin-bottom:10px;">${new Date(item.pubDate).toLocaleDateString('fr-FR')}</div>
-                    <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 80)}...</p>
-                    <a href="${item.link}" target="_blank" class="btn-details" style="margin-top:auto;">Lire l'article</a>`;
-                rssContainer.appendChild(card);
-            });
-        }
-    })
-    .catch(console.error);
+if(rssContainer) {
+    const rssUrl = 'https://www.journalduhacker.net/rss'; 
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
+        .then(r => r.json())
+        .then(data => {
+            if(data.items) {
+                data.items.slice(0, 2).forEach(item => {
+                    const card = document.createElement('article');
+                    card.className = 'veille-card';
+                    card.innerHTML = `
+                        <h3>${item.title}</h3>
+                        <div class="meta" style="color:var(--accent-color);font-size:0.9rem;margin-bottom:10px;">${new Date(item.pubDate).toLocaleDateString('fr-FR')}</div>
+                        <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 80)}...</p>
+                        <a href="${item.link}" target="_blank" class="btn-details" style="margin-top:auto;">Lire l'article</a>`;
+                    rssContainer.appendChild(card);
+                });
+            }
+        })
+        .catch(console.error);
+}
 
 const historyContainer = document.getElementById('history-container');
-fetch('selection_veille.json')
-    .then(r => r.json())
-    .then(data => {
-        data.forEach(item => {
-            const card = document.createElement('article');
-            card.className = 'veille-card';
-            const tags = item.tags.map(t => `<span style="background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-right:5px;">${t}</span>`).join('');
-            card.innerHTML = `
-                <div style="margin-bottom:10px;">${tags}</div>
-                <h3>${item.titre}</h3>
-                <div class="meta" style="color:var(--accent-color);font-size:0.9rem;margin-bottom:10px;">${item.date}</div>
-                <p>${item.description}</p>
-                <a href="${item.lien}" target="_blank" class="btn-details" style="margin-top:auto;">Relire</a>`;
-            historyContainer.appendChild(card);
-        });
-    })
-    .catch(console.error);
+if(historyContainer) {
+    fetch('selection_veille.json')
+        .then(r => r.json())
+        .then(data => {
+            data.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'veille-card';
+                const tags = item.tags.map(t => `<span style="background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-right:5px;">${t}</span>`).join('');
+                card.innerHTML = `
+                    <div style="margin-bottom:10px;">${tags}</div>
+                    <h3>${item.titre}</h3>
+                    <div class="meta" style="color:var(--accent-color);font-size:0.9rem;margin-bottom:10px;">${item.date}</div>
+                    <p>${item.description}</p>
+                    <a href="${item.lien}" target="_blank" class="btn-details" style="margin-top:auto;">Relire</a>`;
+                historyContainer.appendChild(card);
+            });
+        })
+        .catch(console.error);
+}
 
 document.getElementById('year').textContent = new Date().getFullYear();
 const styleSheet = document.createElement("style");
