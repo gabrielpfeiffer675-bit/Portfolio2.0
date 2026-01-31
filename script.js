@@ -56,7 +56,6 @@ window.addEventListener("scroll", () => {
 
     navLi.forEach((li) => {
         li.classList.remove("active");
-        // Petite sécurité : si le lien est externe (comme veille/), il n'a pas d'ID correspondant
         const href = li.getAttribute("href");
         if (href.includes("#") && href.includes(current)) {
             li.classList.add("active");
@@ -218,7 +217,7 @@ window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
 
 afficherProjets('all');
 
-// --- 7. VEILLE & RSS ---
+// --- 7. VEILLE & RSS (MODIFIÉ POUR LE NOUVEAU DESIGN) ---
 const rssContainer = document.getElementById('rss-feed-container');
 if(rssContainer) {
     const rssUrl = 'https://www.journalduhacker.net/rss'; 
@@ -226,13 +225,17 @@ if(rssContainer) {
         .then(r => r.json())
         .then(data => {
             if(data.items) {
-                data.items.slice(0, 2).forEach(item => {
+                data.items.slice(0, 3).forEach(item => { // On en affiche 3 maintenant
                     const card = document.createElement('article');
                     card.className = 'veille-card';
+                    // Ajout d'une petite icône horloge pour la date
+                    const dateStr = new Date(item.pubDate).toLocaleDateString('fr-FR');
                     card.innerHTML = `
                         <h3>${item.title}</h3>
-                        <div class="meta" style="color:var(--accent-color);font-size:0.9rem;margin-bottom:10px;">${new Date(item.pubDate).toLocaleDateString('fr-FR')}</div>
-                        <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 80)}...</p>
+                        <div class="meta" style="color:var(--accent-color);font-size:0.85rem;margin-bottom:15px; display:flex; align-items:center; gap:5px;">
+                            <i class="far fa-clock"></i> ${dateStr}
+                        </div>
+                        <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</p>
                         <a href="${item.link}" target="_blank" class="btn-details" style="margin-top:auto;">Lire l'article</a>`;
                     rssContainer.appendChild(card);
                 });
@@ -249,13 +252,12 @@ if(historyContainer) {
             data.forEach(item => {
                 const card = document.createElement('article');
                 card.className = 'veille-card';
-                const tags = item.tags.map(t => `<span style="background:var(--accent-color);color:#fff;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-right:5px;">${t}</span>`).join('');
+                const tags = item.tags.map(t => `<span style="background:rgba(0,200,83,0.1);color:var(--accent-color);padding:2px 10px;border-radius:12px;font-size:0.75rem;margin-right:5px;font-weight:600;">${t}</span>`).join('');
                 card.innerHTML = `
-                    <div style="margin-bottom:10px;">${tags}</div>
+                    <div style="margin-bottom:15px;">${tags}</div>
                     <h3>${item.titre}</h3>
-                    <div class="meta" style="color:var(--accent-color);font-size:0.9rem;margin-bottom:10px;">${item.date}</div>
                     <p>${item.description}</p>
-                    <a href="${item.lien}" target="_blank" class="btn-details" style="margin-top:auto;">Relire</a>`;
+                    <a href="${item.lien}" target="_blank" class="btn-details" style="margin-top:auto;">Lire l'article</a>`;
                 historyContainer.appendChild(card);
             });
         })
