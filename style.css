@@ -1,30 +1,12 @@
-<<<<<<< Updated upstream
-/* =========================================
-   1. VARIABLES & THÈMES (Thème Vert "Clean")
-   ========================================= */
-:root {
-    --bg-color: #ffffff;
-    --text-color: #1a1a1a;
-    --accent-color: #00c853; /* Vert "Tech" principal */
-=======
 /* RESET & BASE */
 :root {
     --bg-color: #ffffff;
     --text-color: #1a1a1a;
     --accent-color: #00c853; /* Vert "Tech" */
->>>>>>> Stashed changes
     --secondary-color: #2c3e50;
     --card-bg: #f8f9fa;
     --nav-bg: rgba(255, 255, 255, 0.95);
     --section-spacing: 100px;
-<<<<<<< Updated upstream
-
-    /* Couleurs de l'animation d'arrière-plan (Vert/Cyan) */
-    --blob-1: #00c853; /* Vert */
-    --blob-2: #00b0ff; /* Bleu Cyan */
-    --blob-3: #69f0ae; /* Vert menthe */
-=======
->>>>>>> Stashed changes
 }
 
 [data-theme="dark"] {
@@ -34,52 +16,6 @@
     --secondary-color: #a0a0a0;
     --card-bg: #141414;
     --nav-bg: rgba(10, 10, 10, 0.95);
-<<<<<<< Updated upstream
-
-    /* Couleurs plus sombres/néons pour le mode dark */
-    --blob-1: #00e676;
-    --blob-2: #00b0ff;
-    --blob-3: #004d40;
-}
-
-/* =========================================
-   2. STYLES GÉNÉRAUX
-   ========================================= */
-* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-body { 
-    font-family: 'Inter', sans-serif; 
-    background-color: var(--bg-color); 
-    color: var(--text-color); 
-    transition: background 0.3s, color 0.3s; 
-    overflow-x: hidden; 
-    line-height: 1.6; 
-}
-
-h1, h2, h3, h4 { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-h2 { font-size: 2.5rem; text-align: center; margin-bottom: 50px; position: relative; }
-h2::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--accent-color); border-radius: 2px; }
-
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; }
-section { padding: var(--section-spacing) 10%; position: relative; }
-
-/* BOUTONS MODERNES */
-.btn-submit, .btn-cv { display: inline-block; padding: 12px 25px; background: linear-gradient(45deg, var(--accent-color), #00b0ff); color: #fff!important; border-radius: 30px; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3); transition: transform 0.3s, box-shadow 0.3s; }
-.btn-submit:hover, .btn-cv:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4); }
-
-/* =========================================
-   3. NAVBAR
-   ========================================= */
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 10%; position: fixed; width: 100%; top: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
-[data-theme="dark"] .navbar { border-bottom: 1px solid rgba(0,0,0,0.1); }
-
-.logo { font-size: 1.8rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-.nav-links { display: flex; gap: 30px; align-items: center; }
-.nav-link { font-weight: 500; position: relative; font-size: 0.95rem; }
-.nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: 0.3s; }
-.nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-=======
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -104,127 +40,23 @@ section { padding: var(--section-spacing) 10%; }
 .nav-link { font-weight: 500; position: relative; font-size: 0.95rem; }
 .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: 0.3s; }
 .nav-link:hover::after, .nav-link.active::after { width: 100%; }
->>>>>>> Stashed changes
 #theme-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 5px; }
 .burger { display: none; cursor: pointer; }
 .burger div { width: 25px; height: 3px; background: var(--text-color); margin: 5px; transition: 0.3s; }
 
-/* =========================================
-   4. HERO SECTION (ACCUEIL)
-   ========================================= */
-#accueil { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding-top: 0; }
-.content-wrapper { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; }
-
-<<<<<<< Updated upstream
-/* TITRE DÉGRADÉ (Vert/Bleu) */
+/* HERO SECTION */
+#accueil { height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+.content-wrapper { position: relative; z-index: 2; max-width: 600px; }
 #accueil h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-.gradient-text { 
-    background: linear-gradient(45deg, var(--accent-color), #00b0ff); 
-    background-size: 200% auto;
-    -webkit-background-clip: text; 
-    background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    display: inline-block; 
-    animation: gradientFlow 3s linear infinite;
-}
-@keyframes gradientFlow { 
-    0% { background-position: 0% center; } 
-    100% { background-position: 200% center; } 
-}
-
 .description { font-size: 1.2rem; color: var(--secondary-color); margin-bottom: 30px; min-height: 1.6em; }
-
-.social-links { display: flex; justify-content: center; gap: 20px; }
+.social-links { display: flex; gap: 20px; }
 .social-btn { display: flex; align-items: center; gap: 10px; padding: 10px 20px; border: 2px solid var(--accent-color); border-radius: 30px; font-weight: 600; transition: 0.3s; }
 .social-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-
-/* --- BACKGROUND ANIMATION (VERSION GROSSES FORMES) --- */
-=======
-/* --- BACKGROUND ANIMATION --- */
->>>>>>> Stashed changes
-.background-animation {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1; pointer-events: none; overflow: hidden;
-}
-<<<<<<< Updated upstream
-
-.shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px); /* Flou très important pour l'effet diffus */
-    opacity: 0.5;
-    animation: floatShape 15s infinite alternate ease-in-out;
-}
-
-.shape-1 {
-    top: -10%; left: -10%; 
-    width: 50vw; height: 50vw; 
-    background: var(--blob-1); 
-    animation-delay: 0s;
-}
-
-.shape-2 {
-    bottom: -10%; right: -10%; 
-    width: 45vw; height: 45vw; 
-    background: var(--blob-2); 
-    animation-delay: -5s;
-}
-
-.shape-3 {
-    top: 30%; left: 30%; 
-    width: 40vw; height: 40vw; 
-    background: var(--blob-3); 
-    animation-delay: -8s;
-    opacity: 0.3;
-}
-
-@keyframes floatShape {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-    100% { transform: translate(40px, 40px) scale(1.1) rotate(15deg);
-=======
-.shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
-    animation: floatShape 10s infinite alternate;
-}
-.shape-1 {
-    top: -10%; left: -10%; width: 500px; height: 500px;
-    background: var(--blob-1); animation-delay: 0s;
-}
-.shape-2 {
-    bottom: -10%; right: -10%; width: 400px; height: 400px;
-    background: var(--blob-2); animation-delay: -2s;
-}
-.shape-3 {
-    top: 40%; left: 40%; width: 300px; height: 300px;
-    background: var(--blob-3); animation-delay: -4s;
-}
-@keyframes floatShape {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, 50px) scale(1.1); }
-}
-
-.gradient-text {
-    background: linear-gradient(to right, #007bff, #00d2ff, #8e44ad, #007bff);
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-    background-clip: text; 
-    color: transparent;
-    animation: gradientFlow 3s linear infinite; font-size: 3rem;
-    margin-bottom: 20px;
-}
-@keyframes gradientFlow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
-
-.description { font-family: 'JetBrains Mono', monospace; min-height: 60px; max-width: 700px; margin: 0 auto 30px auto; }
-#typewriter::after { content: '|'; animation: blink 1s infinite; color: var(--accent-color); }
-@keyframes blink { 50% { opacity: 0; } }
-
-.social-links { display: flex; justify-content: center; gap: 15px; }
-.social-btn { padding: 10px 25px; border-radius: 30px; display: flex; gap: 10px; align-items: center; color: white; transition: 0.3s; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.github { background: #333; } .linkedin { background: #0077b5; }
-.social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.background-animation .shape { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.2; z-index: 1; animation: float 20s infinite; }
+.shape-1 { width: 400px; height: 400px; background: var(--accent-color); top: -100px; right: -100px; }
+.shape-2 { width: 300px; height: 300px; background: #00b0ff; bottom: -50px; left: -50px; animation-delay: -5s; }
+.shape-3 { width: 200px; height: 200px; background: #ff00d4; top: 50%; right: 30%; animation-delay: -10s; }
+@keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, -30px); } }
 
 /* CV SECTION */
 .cv-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
@@ -351,4 +183,3 @@ footer { text-align: center; padding: 30px; background: var(--card-bg); margin-t
     .background-animation { display: none; }
     h2 { font-size: 2rem; }
 }
->>>>>>> Stashed changes
