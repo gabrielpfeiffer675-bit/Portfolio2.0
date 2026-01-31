@@ -56,7 +56,9 @@ window.addEventListener("scroll", () => {
 
     navLi.forEach((li) => {
         li.classList.remove("active");
-        if (li.getAttribute("href").includes(current)) {
+        // Petite sécurité : si le lien est externe (comme veille/), il n'a pas d'ID correspondant
+        const href = li.getAttribute("href");
+        if (href.includes("#") && href.includes(current)) {
             li.classList.add("active");
         }
     });
@@ -151,7 +153,6 @@ const gridContainer = document.getElementById('projets-grid');
 const modal = document.getElementById("project-modal");
 
 function afficherProjets(filtre = 'all') {
-    // SÉCURITÉ : Si on est sur une page sans grille de projet (ex: projet-serre.html), on arrête.
     if (!gridContainer) return;
 
     gridContainer.innerHTML = ''; 
@@ -163,7 +164,6 @@ function afficherProjets(filtre = 'all') {
             card.style.animation = 'fadeIn 0.5s ease forwards';
             const tagsHtml = projet.tags.map(tag => `<li>${tag}</li>`).join('');
 
-            // LOGIQUE DU BOUTON : Si c'est un lien .html, on fait un lien <a>. Sinon un bouton <button>
             const boutonHtml = projet.lien && projet.lien.includes('.html') 
                 ? `<a href="${projet.lien}" class="btn-details">Voir le détail</a>`
                 : `<button class="btn-details" onclick="ouvrirModale('${projet.id}')">En savoir plus</button>`;
@@ -192,7 +192,6 @@ window.ouvrirModale = (idProjet) => {
     const projet = mesProjets.find(p => p.id === idProjet);
     if (projet) {
         document.getElementById("modal-title").textContent = projet.titre;
-        // INNERHTML pour gérer les balises <br> et <strong>
         document.getElementById("modal-desc").innerHTML = projet.description_longue;
         
         const linkBtn = document.getElementById("modal-link");
@@ -217,7 +216,6 @@ if(document.querySelector(".close-modal")) {
 }
 window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
 
-// Lancer l'affichage
 afficherProjets('all');
 
 // --- 7. VEILLE & RSS ---

@@ -37,7 +37,7 @@
                 <li><a href="#cv" class="nav-link">Parcours</a></li>
                 <li><a href="#services" class="nav-link">Expertise</a></li>
                 <li><a href="#projets" class="nav-link">Projets</a></li>
-                <li><a href="#veille" class="nav-link">Veille</a></li>
+                <li><a href="veille/" class="nav-link" target="_blank">Veille <i class="fas fa-external-link-alt" style="font-size:0.7em;"></i></a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><button id="theme-toggle">🌙</button></li>
             </ul>
@@ -204,10 +204,17 @@
     </section>
 
     <section id="veille" class="reveal">
-        <h2><i class="fas fa-rss"></i> Veille Technologique</h2>
-        <div class="veille-grid" id="rss-feed-container"></div>
-        <h3 style="margin-top:40px;">Sujet : Architecture & Sécurité</h3>
+        <h2><i class="fas fa-rss"></i> Aperçu de ma Veille</h2>
+        <p style="margin-bottom: 20px;">Voici les derniers sujets que j'ai traités. Pour voir l'intégralité de mes articles, accédez à mon site dédié.</p>
+        
         <div class="veille-grid" id="history-container"></div>
+        <div class="veille-grid" id="rss-feed-container" style="margin-top: 20px;"></div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="veille/" target="_blank" class="btn-submit" style="padding: 15px 30px; font-size: 1.1rem;">
+                <i class="fas fa-external-link-alt"></i> Accéder au CMS de Veille complet
+            </a>
+        </div>
     </section>
 
     <section id="contact" class="reveal">
@@ -247,6 +254,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>
