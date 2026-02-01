@@ -28,8 +28,7 @@ ul { list-style: none; }
 section { padding: var(--section-spacing) 10%; }
 
 /* UTILS */
-.gradient-text { background: linear-gradient(45deg, var(--accent-color), #00b0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
-.btn-submit, .btn-cv { display: inline-block; padding: 12px 25px; background: linear-gradient(45deg, var(--accent-color), #00b0ff); color: #fff!important; border-radius: 30px; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3); transition: transform 0.3s, box-shadow 0.3s; }
+.gradient-text { background: linear-gradient(45deg, var(--accent-color), #00b0ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
 .btn-submit:hover, .btn-cv:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4); }
 
 /* NAVBAR */
