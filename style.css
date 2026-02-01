@@ -183,3 +183,57 @@ footer { text-align: center; padding: 30px; background: var(--card-bg); margin-t
     .background-animation { display: none; }
     h2 { font-size: 2rem; }
 }
+
+/* =========================================
+   11. PRELOADER (ÉCRAN DE CHARGEMENT)
+   ========================================= */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--bg-color); /* Fond uni propre */
+    z-index: 9999; /* Toujours au-dessus */
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+/* Classe ajoutée en JS pour cacher le loader */
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-container {
+    position: relative;
+    width: 150px; height: 150px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* Les anneaux rotatifs */
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--accent-color); /* Vert tech */
+    animation: spin var(--duration) linear infinite;
+}
+
+.ring-1 { width: 100%; height: 100%; --duration: 2s; border-width: 3px; filter: drop-shadow(0 0 10px var(--accent-color)); }
+.ring-2 { width: 70%; height: 70%; --duration: 1.5s; border-top-color: #00b0ff; /* Bleu cyan */ animation-direction: reverse; }
+.ring-3 { width: 40%; height: 40%; --duration: 3s; border-top-color: #69f0ae; /* Vert menthe */ }
+
+/* Texte sous les anneaux */
+.loading-text {
+    position: absolute;
+    bottom: -40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Animation des petits points (...) */
+.dots { animation: dotsBlink 1.5s infinite steps(4); display: inline-block; width: 20px; text-align: left; }
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes dotsBlink { 0%, 20% { content: '.'; } 40% { content: '..'; } 60% { content: '...'; } 80%, 100% { content: ''; } }

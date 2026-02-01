@@ -63,10 +63,12 @@ window.addEventListener("scroll", () => {
     });
 });
 
-// --- 4. TYPEWRITER ---
+// --- 4. PRELOADER & TYPEWRITER SYNCHRONISÉS ---
 const textToType = "Passionné par le développement, j'habite à Haguenau et je construis ce portfolio pour présenter mes compétences techniques.";
 const typewriterElement = document.getElementById('typewriter');
 let i = 0;
+let typewriterStarted = false;
+
 function typeWriter() {
     if (typewriterElement && i < textToType.length) {
         typewriterElement.textContent += textToType.charAt(i);
@@ -74,7 +76,33 @@ function typeWriter() {
         setTimeout(typeWriter, 30);
     }
 }
-window.onload = typeWriter;
+
+// On attend que TOUT le site soit chargé
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    
+    if (preloader) {
+        // Petit délai de 500ms pour voir l'animation
+        setTimeout(() => {
+            preloader.classList.add('loader-hidden');
+            
+            // Une fois la disparition terminée...
+            preloader.addEventListener('transitionend', () => {
+                if (preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+                // ET on lance la machine à écrire maintenant
+                if (!typewriterStarted) {
+                    typeWriter();
+                    typewriterStarted = true;
+                }
+            });
+        }, 500);
+    } else {
+        // Fallback
+        typeWriter();
+    }
+});
 
 // --- 5. SCROLL REVEAL ---
 const revealElements = document.querySelectorAll('.reveal');
@@ -217,7 +245,7 @@ window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
 
 afficherProjets('all');
 
-// --- 7. VEILLE & RSS (MODIFIÉ POUR LE NOUVEAU DESIGN) ---
+// --- 7. VEILLE & RSS ---
 const rssContainer = document.getElementById('rss-feed-container');
 if(rssContainer) {
     const rssUrl = 'https://www.journalduhacker.net/rss'; 
@@ -225,10 +253,9 @@ if(rssContainer) {
         .then(r => r.json())
         .then(data => {
             if(data.items) {
-                data.items.slice(0, 3).forEach(item => { // On en affiche 3 maintenant
+                data.items.slice(0, 3).forEach(item => {
                     const card = document.createElement('article');
                     card.className = 'veille-card';
-                    // Ajout d'une petite icône horloge pour la date
                     const dateStr = new Date(item.pubDate).toLocaleDateString('fr-FR');
                     card.innerHTML = `
                         <h3>${item.title}</h3>
