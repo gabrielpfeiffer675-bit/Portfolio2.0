@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - Gabriel Pfeiffer</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-section { margin-bottom: 60px; }
+        .legal-section h2 { text-align: left; font-size: 1.8rem; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 20px; }
+        .legal-section h2::after { display: none; } /* Enlève la barre centrée du style principal */
+        [data-theme="dark"] .legal-section h2 { border-bottom-color: rgba(255,255,255,0.1); }
+        .legal-content { color: var(--secondary-color); line-height: 1.8; }
+        strong { color: var(--text-color); }
+        a.mail-link { color: var(--accent-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Mentions<span style="color:var(--accent-color)">.Légales</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">← Retour au site</a></li>
+                <li><button id="theme-toggle">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section style="padding-top: 150px;">
+        <h1 class="gradient-text" style="font-size: 2.5rem; margin-bottom: 50px;">Mentions Légales & Confidentialité</h1>
+
+        <div class="legal-section reveal">
+            <h2>1. Éditeur du site</h2>
+            <div class="legal-content">
+                <p>Le présent site est édité par <strong>Gabriel Pfeiffer</strong>, étudiant en BTS SIO.</p>
+                <p><strong>Statut :</strong> Particulier (Étudiant)</p>
+                <p><strong>Adresse :</strong> Haguenau, France</p>
+                <p><strong>Contact :</strong> <a href="mailto:ton-email@exemple.com" class="mail-link">ton-email@exemple.com</a></p>
+            </div>
+        </div>
+
+        <div class="legal-section reveal">
+            <h2>2. Hébergement</h2>
+            <div class="legal-content">
+                <p>Ce site est hébergé techniquement par deux prestataires :</p>
+                <br>
+                <p><strong>Partie statique (Portfolio) :</strong><br>
+                GitHub Inc.<br>
+                88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.</p>
+                <br>
+                <p><strong>Partie dynamique (CMS Veille) :</strong><br>
+                AlwaysData (Alwaydata SARL)<br>
+                91 rue du Faubourg Saint-Honoré, 75008 Paris, France.</p>
+            </div>
+        </div>
+
+        <div class="legal-section reveal">
+            <h2>3. Propriété Intellectuelle</h2>
+            <div class="legal-content">
+                <p>L’ensemble de ce site relève de la législation française et internationale sur le droit d’auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques (notamment les captures d'écran de projets).</p>
+                <p>Les logos cités (Cisco, ANSSI, GitHub, etc.) sont la propriété de leurs détenteurs respectifs.</p>
+            </div>
+        </div>
+
+        <div class="legal-section reveal">
+            <h2>4. Données Personnelles (RGPD)</h2>
+            <div class="legal-content">
+                <p><strong>Formulaire de contact :</strong><br>
+                Les informations recueillies via le formulaire de contact (Nom, Email, Message) sont transmises via le service tiers <strong>Formspree</strong>. Elles ne sont utilisées que dans le but de répondre à votre demande. Elles ne sont ni vendues, ni cédées à des tiers.</p>
+                
+                <p style="margin-top:15px;"><strong>Cookies & Stockage Local :</strong><br>
+                Ce site n'utilise pas de cookies publicitaires ou de traçage. Seul le "Local Storage" de votre navigateur est utilisé pour mémoriser votre préférence de thème (Mode Sombre/Clair) afin d'améliorer votre expérience utilisateur.</p>
+
+                <p style="margin-top:15px;"><strong>Vos droits :</strong><br>
+                Conformément à la loi « Informatique et Libertés », vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en contactant l'éditeur par email.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> - Gabriel Pfeiffer - Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
