@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet JPO-Data | Gabriel Pfeiffer</title>
+    <title>Fiche E5 - Application JPO-Data | Gabriel Pfeiffer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -12,19 +12,20 @@
     <style>
         .project-header { padding-top: 120px; text-align: center; margin-bottom: 60px; }
         .project-content { background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.05); }
-        .project-meta { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
-        .meta-item { background: rgba(0, 123, 255, 0.1); color: #00b0ff; padding: 6px 18px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
-        .code-window { background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-left: 5px solid #00b0ff; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .competence-tag { display: inline-block; background: rgba(0, 176, 255, 0.1); color: #00b0ff; padding: 5px 12px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 15px; border: 1px solid rgba(0, 176, 255, 0.2); }
+        .bloc-tag { background: #2c3e50; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; margin-right: 5px; vertical-align: middle; }
+        .code-window { background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden; margin: 20px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-left: 5px solid #00b0ff; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .code-header { background: #252526; padding: 10px 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; color: #888; font-size: 0.8rem; }
         .dots { display: flex; gap: 5px; } .dot { width: 10px; height: 10px; border-radius: 50%; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
         pre { margin: 0; padding: 20px; overflow-x: auto; line-height: 1.5; }
+        .img-placeholder { border: 2px dashed var(--accent-color); background: rgba(0, 200, 83, 0.05); border-radius: 10px; padding: 30px; text-align: center; margin: 20px 0; color: var(--accent-color); font-weight: 600; }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">Projet<span style="color:#00b0ff">.JPO</span></div>
+            <div class="logo">E5<span style="color:#00b0ff">.JPO</span></div>
             <ul class="nav-links">
                 <li><a href="portfolio.html" class="nav-link">← Retour au Portfolio</a></li>
             </ul>
@@ -33,41 +34,88 @@
 
     <section>
         <div class="project-header">
-            <h1 class="gradient-text">Application "JPO-Data"</h1>
-            <div class="project-meta">
-                <span class="meta-item"><i class="fas fa-university"></i> Projet Lycée René Cassin</span>
-                <span class="meta-item"><i class="fas fa-code"></i> HTML5 / CSS3 Responsive</span>
-                <span class="meta-item"><i class="fas fa-database"></i> Modélisation 3NF</span>
+            <h1 class="gradient-text">Dossier de Preuves E5 — JPO-Data</h1>
+            <p style="margin-top: 10px; color: var(--secondary-color);">Cadre : Projet Pédagogique d'Équipe | Organisation : Lycée René Cassin</p>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 1</span>Compétence 1.1 : Recenser et identifier les ressources numériques</div>
+            <p><strong>Descriptif de la preuve :</strong> Modélisation de données et conception normalisée de la base de données relationnelle MySQL, validée rigoureusement en 3ème Forme Normale (3NF).</p>
+            
+            <div style="background: rgba(0,0,0,0.02); padding: 20px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6;">
+                <strong>Modèle Logique de Données (MLD 3NF) :</strong><br>
+                • FORMATION (<span style="text-decoration: underline;">codeForm</span>, nomForm, typeForm, salleForm)<br>
+                • VISITEUR (<span style="text-decoration: underline;">numVisi</span>, nomVisi, prenomVisi, statutVisi, emailVisi, telVisi)<br>
+                • VISITE (<span style="text-decoration: underline;">#numVisi, #codeForm</span>, heureArrivee)
+            </div>
+            
+            <p style="margin-top: 15px;">Le <strong>Graphe de Dépendances Fonctionnelles (GDF)</strong> a validé l'absence de redondances transitives, garantissant une structure optimale éliminant les anomalies d'insertion.</p>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 2</span>Compétence 2.2 : Traiter des demandes concernant les applications</div>
+            <p><strong>Descriptif de la preuve :</strong> Remplacement complet du processus d'émargement manuel papier par une interface Web responsive interrogeable sur tablettes à l'accueil du lycée.</p>
+            
+            <div class="img-placeholder">
+                <i class="fas fa-palette" style="font-size: 2rem; margin-bottom: 10px;"></i><br>
+                [Insérer ici la capture d'écran des maquettes UI réalisées sur Penpot]
+            </div>
+
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Extrait du formulaire HTML5 sémantique et typé</span>
+                </div>
+                <pre><code>&lt;form action="https://formspree.io/f/mvzzpopd" method="POST"&gt;
+    &lt;label for="statut"&gt;Filière d'origine :&lt;/label&gt;
+    &lt;select name="statut" id="statut" required&gt;
+        &lt;option value="STI2D"&gt;Bac STI2D&lt;/option&gt;
+        &lt;option value="Generale"&gt;Bac Général&lt;/option&gt;
+        &lt;option value="Pro"&gt;Bac Professionnel&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;label for="heure"&gt;Heure de passage :&lt;/label&gt;
+    &lt;input type="time" name="heure" id="heure" required&gt;
+&lt;/form&gt;</code></pre>
             </div>
         </div>
 
         <div class="project-content">
-            <h2>1. Fiche d'identité</h2>
-            <p>Projet d'équipe à but pédagogique réalisé en cours de formation pour le Lycée René Cassin (Strasbourg). Il intègre du maquettage UI sur Penpot et une adaptation responsive complète.</p>
+            <div class="competence-tag"><span class="bloc-tag">BLOC 2</span>Compétence 2.3 : Résoudre des incidents liés aux applications</div>
+            <p><strong>Descriptif de la preuve :</strong> Résolution méthodique d'un blocage d'insertion (Erreur MySQL #1452) survenu lors des tests de transactions unitaires.</p>
+            <div style="background: rgba(0,0,0,0.02); padding: 25px; border-radius: 8px; line-height: 1.7;">
+                <p><strong>Rapport d'incident technique :</strong></p>
+                <ul>
+                    <li><strong>Symptôme :</strong> <code>Error 1452: Cannot add or update a child row: a foreign key constraint fails</code>.</li>
+                    <li><strong>Analyse :</strong> La table parente <code>FORMATION</code> avait été initialisée avec des codes correspondant aux numéros réels des salles (commençant à l'ID 3), tandis que les scripts d'essais simulaient des transactions sur les codes par défaut 1 et 2, inexistants dans la table parente.</li>
+                    <li><strong>Résolution :</strong> Mise à jour du script SQL pour insérer l'ensemble des salles (1 à 221) en amont des tests afin de réaligner l'intégrité relationnelle.</li>
+                </ul>
+            </div>
         </div>
 
         <div class="project-content">
-            <h2>2. Problématique & Besoins</h2>
-            <p>Informatiser l'intégralité de la collecte des fiches d'information visiteurs lors des Journées Portes Ouvertes afin de supprimer les supports papier obsolètes, suivre en temps réel l'affluence du public et analyser l'intérêt des profils entrants (STI2D, Générale) par rapport aux options du BTS SIO.</p>
-        </div>
-
-        <div class="project-content">
-            <h2>3. Réalisations techniques (Preuves)</h2>
-            <ul>
-                <li><strong>Modélisation relationnelle :</strong> Établissement d'un dictionnaire de 14 données, d'un Graphe de Dépendances Fonctionnelles (GDF) et d'un MLD normalisé en <strong>3NF</strong>.</li>
-                <li><strong>Scripting SGBD (MySQL) :</strong> Écriture de <code>jpo.sql</code> générant 3 tables imbriquées (<code>FORMATION</code>, <code>VISITEUR</code>, <code>VISITE</code>) avec contraintes de clés déclarées proprement hors-table via l'instruction <code>ALTER TABLE</code>.</li>
-                <li><strong>Requêtage Décisionnel :</strong> Formulation de requêtes d'agrégation complexes pour extraire instantanément le flux de visiteurs par filière et par créneau horaire.</li>
-            </ul>
+            <div class="competence-tag"><span class="bloc-tag">BLOC 3</span>Compétence 3.3 : Participer à l’évolution d’un site Web exploitant les données de l’organisation</div>
+            <p><strong>Descriptif de la preuve :</strong> Écriture complète du script de structure relationnelle de production SQL, isolant rigoureusement les contraintes métiers.</p>
             
             <div class="code-window">
                 <div class="code-header">
                     <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                    <span>Déclaration standardisée des contraintes d'intégrité relationnelles (SQL)</span>
+                    <span>jpo.sql (Création des structures et contraintes relationnelles)</span>
                 </div>
-                <pre><code>ALTER TABLE VISITE 
-ADD CONSTRAINT FK_VISITE_VISITEUR 
-FOREIGN KEY (numVisi) REFERENCES VISITEUR(numVisi);
+                <pre><code>CREATE TABLE FORMATION (
+    codeForm INT AUTO_INCREMENT PRIMARY KEY,
+    nomForm VARCHAR(50) NOT NULL,
+    salleForm INT NOT NULL
+) ENGINE=InnoDB;
 
+CREATE TABLE VISITE (
+    numVisi INT,
+    codeForm INT,
+    heureArrivee TIME NOT NULL,
+    PRIMARY KEY (numVisi, codeForm)
+) ENGINE=InnoDB;
+
+-- Déclaration externe et propre des contraintes de clés étrangères
 ALTER TABLE VISITE 
 ADD CONSTRAINT FK_VISITE_FORMATION 
 FOREIGN KEY (codeForm) REFERENCES FORMATION(codeForm);</code></pre>
@@ -75,19 +123,46 @@ FOREIGN KEY (codeForm) REFERENCES FORMATION(codeForm);</code></pre>
         </div>
 
         <div class="project-content">
-            <h2>4. Sécurité & RGPD (Conformité)</h2>
-            <p>Le transit des flux d'informations est protégé contre les attaques de type <em>Man-in-the-Middle</em> via des requêtes HTTPS chiffrées interrogeant l'API Formspree. La conformité RGPD (Privacy by Design) est respectée par l'ajout d'une case de consentement obligatoire (attribut <code>required</code>) et d'un bandeau stipulant la purge automatique sous un délai de 1 an.</p>
+            <div class="competence-tag"><span class="bloc-tag">BLOC 4</span>Compétence 4.1 & 4.2 : Mode Projet (Objectifs et Planification)</div>
+            <p><strong>Descriptif de la preuve :</strong> Conception des scripts SQL décisionnels avancés requis par la direction pour analyser l'affluence de la JPO en temps réel.</p>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Requete_Statistiques.sql (Jointures, tris et agrégations)</span>
+                </div>
+                <pre><code>SELECT F.nomForm, COUNT(V.numVisi) AS nombre_visiteurs
+FROM FORMATION F
+INNER JOIN VISITE V ON F.codeForm = V.codeForm
+INNER JOIN VISITEUR VT ON V.numVisi = VT.numVisi
+WHERE VT.statutVisi = 'STI2D'
+GROUP BY F.nomForm
+ORDER BY nombre_visiteurs DESC;</code></pre>
+            </div>
         </div>
 
         <div class="project-content">
-            <h2>5. Gestion des incidents (Le bug résolu)</h2>
-            <p><strong>Incident :</strong> Apparition récurrente de l'erreur MySQL #1452 (<em>Foreign key constraint fails</em>) lors des phases de tests d'insertions groupées.</p>
-            <p><strong>Résolution :</strong> L'analyse a révélé que la table parente <code>FORMATION</code> avait été initialisée avec des identifiants réels de salles démarrant au numéro 3, rendant orphelines les requêtes de tests qui ciblaient les ID génériques 1 et 2. Le script d'insertion a été corrigé pour inclure de manière exhaustive les salles 1 à 221 en amont des tests, rétablissant la conformité relationnelle.</p>
+            <div class="competence-tag"><span class="bloc-tag">BLOC 5</span>Compétence 5.1 : Réaliser les tests d’intégration et d’acceptation d’un service</div>
+            <p><strong>Descriptif de la preuve :</strong> Validation de la conformité réglementaire (RGPD) et technique. Implémentation du chiffrement des flux en transit en HTTPS via l'API Formspree pour bloquer les interceptions malveillantes (*Man-in-the-Middle*).</p>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Conformité RGPD et case de consentement obligatoire</span>
+                </div>
+                <pre><code>&lt;!-- Clause de consentement explicite - RGPD (Privacy by Design) --&gt;
+&lt;div class="form-group-rgpd"&gt;
+    &lt;input type="checkbox" id="rgpd" name="rgpd_consent" required&gt;
+    &lt;label for="rgpd"&gt; J'accepte que mes données soient enregistrées à des fins de statistiques JPO. 
+    Elles seront définitivement purgées sous un délai de 1 an.&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 - Gabriel Pfeiffer - Portfolio BTS SIO</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

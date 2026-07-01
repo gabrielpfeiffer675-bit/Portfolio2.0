@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet didiland.docs | Gabriel Pfeiffer</title>
+    <title>Fiche E5 - Application didiland.docs | Gabriel Pfeiffer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -12,19 +12,24 @@
     <style>
         .project-header { padding-top: 120px; text-align: center; margin-bottom: 60px; }
         .project-content { background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.05); }
-        .project-meta { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
-        .meta-item { background: rgba(0, 200, 83, 0.1); color: var(--accent-color); padding: 6px 18px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
-        .code-window { background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-left: 5px solid var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .competence-tag { display: inline-block; background: rgba(0, 200, 83, 0.1); color: var(--accent-color); padding: 5px 12px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 15px; border: 1px solid rgba(0, 200, 83, 0.2); }
+        .bloc-tag { background: #2c3e50; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; margin-right: 5px; vertical-align: middle; }
+        .code-window { background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden; margin: 20px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-left: 5px solid var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .code-header { background: #252526; padding: 10px 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; color: #888; font-size: 0.8rem; }
         .dots { display: flex; gap: 5px; } .dot { width: 10px; height: 10px; border-radius: 50%; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
         pre { margin: 0; padding: 20px; overflow-x: auto; line-height: 1.5; }
+        .img-placeholder { border: 2px dashed #00b0ff; background: rgba(0, 176, 255, 0.05); border-radius: 10px; padding: 30px; text-align: center; margin: 20px 0; color: #00b0ff; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95rem; }
+        th, td { border: 1px solid rgba(0,0,0,0.1); padding: 10px; text-align: left; }
+        [data-theme="dark"] th, [data-theme="dark"] td { border-collapse: collapse; border: 1px solid rgba(255,255,255,0.1); }
+        th { background: rgba(0,0,0,0.02); font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">Projet<span style="color:var(--accent-color)">.Didiland</span></div>
+            <div class="logo">E5<span style="color:var(--accent-color)">.Didiland</span></div>
             <ul class="nav-links">
                 <li><a href="portfolio.html" class="nav-link">← Retour au Portfolio</a></li>
             </ul>
@@ -33,67 +38,247 @@
 
     <section>
         <div class="project-header">
-            <h1 class="gradient-text">Application "didiland.docs"</h1>
-            <div class="project-meta">
-                <span class="meta-item"><i class="fas fa-briefcase"></i> Stage de 1ère Année</span>
-                <span class="meta-item"><i class="fab fa-php"></i> PHP & CodeIgniter 3</span>
-                <span class="meta-item"><i class="fas fa-database"></i> MySQL</span>
+            <h1 class="gradient-text">Dossier de Preuves E5 — didiland.docs</h1>
+            <p style="margin-top: 10px; color: var(--secondary-color);">Cadre : Stage professionnel | Organisation : Parc Didiland | Tuteur : M. Roser</p>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 1</span>Compétence 1.1 : Recenser et identifier les ressources numériques</div>
+            <p><strong>Descriptif de la preuve :</strong> Conception, normalisation et implémentation de la structure relationnelle de la base de données centralisée de l'application afin de répertorier l'ensemble des documentations techniques du parc.</p>
+            
+            <div class="img-placeholder">
+                <i class="fas fa-database" style="font-size: 2rem; margin-bottom: 10px;"></i><br>
+                [Insérer ici la capture d'écran du schéma relationnel de la BDD de HeidiSQL / phpMyAdmin]
             </div>
-        </div>
 
-        <div class="project-content">
-            <h2>1. Fiche d'identité</h2>
-            <p>Développé en autonomie durant mon stage auprès de M. Roser (Responsable administration) au parc d'attractions Didiland. L'environnement a été déployé localement sur Laragon avec configuration d'un Hôte Virtuel (didiland.docs).</p>
-        </div>
-
-        <div class="project-content">
-            <h2>2. Problématique & Besoins</h2>
-            <p>Le parc gérait ses notices d'attractions, manuels de maintenance et consignes de sécurité obligatoires de manière fragmentée. Le besoin était de centraliser ces ressources critiques au sein d'une plateforme unique avec recherche multicritères et restriction des accès selon les rôles (Admin / Technicien).</p>
-        </div>
-
-        <div class="project-content">
-            <h2>3. Réalisations techniques (Preuves)</h2>
+            <p style="margin-top: 15px;"><strong>Dictionnaire explicatif des entités implémentées :</strong></p>
             <ul>
-                <li><strong>Base de données :</strong> Modélisation normalisée reliant les tables <code>DOCUMENT</code>, <code>ATTRACTION</code>, <code>TYPE_DOCUMENT</code> et <code>UTILISATEUR</code>.</li>
-                <li><strong>Module CRUD :</strong> Gestion dynamique complète des documents avec rendu asynchrone propulsé par l'extension JavaScript DataTables.</li>
-                <li><strong>Intégrité applicative :</strong> Utilisation d'un trigger logique empêchant la suppression d'une attraction si des notices restent orphelines.</li>
+                <li><code>DOCUMENT</code> : Stocke les métadonnées de la notice (titre, nom de fichier unique chiffré, date d'ajout, clés étrangères).</li>
+                <li><code>ATTRACTION</code> : Identifie de manière unique les manèges du parc (nom, constructeur, date de mise en service).</li>
+                <li><code>TYPE_DOCUMENT</code> : Catégorise les documents (ex : Notice Constructeur, Fiche de maintenance, Consigne de sécurité).</li>
+                <li><code>UTILISATEUR</code> : Contient les identifiants et les rôles de connexion pour le contrôle d'accès.</li>
             </ul>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 1</span>Compétence 1.3 : Mettre en place et vérifier les niveaux d’habilitation associés à un service</div>
+            <p><strong>Descriptif de la preuve :</strong> Isolation stricte des traitements applicatifs Back-end selon le profil de l'utilisateur stocké en Session. Les fonctionnalités de modification (CRUD) sont bloquées en amont si l'utilisateur possède uniquement le rôle Technicien.</p>
             
             <div class="code-window">
                 <div class="code-header">
                     <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                    <span>Contrôle d'intégrité référentielle avant suppression (PHP)</span>
+                    <span>Document.php (Contrôleur CodeIgniter 3 — Guard de rôle)</span>
                 </div>
-                <pre><code>public function delete_attraction($id) {
-    // 1. Contrôle par requête COUNT du nombre de notices liées
-    $this->db->where('id_attraction', $id);
-    $count = $this->db->count_all_results('DOCUMENT');
-
-    if ($count > 0) {
-        // Transaction annulée pour éviter les données orphelines
-        return FALSE; 
-    } else {
-        $this->db->where('id', $id);
-        return $this->db->delete('ATTRACTION');
+                <pre><code>public function ajouter() {
+    // Vérification de l'existence de la session et du niveau d'habilitation
+    $user_role = $this->session->userdata('role');
+    
+    if (!$this->session->userdata('logged_in') || $user_role !== 'Admin') {
+        // Redirection ou blocage si les habilitations sont insuffisantes
+        show_error("Accès refusé : Vous ne disposez pas des habilitations requises.", 403);
+        return;
     }
+    
+    // Suite du traitement pour les administrateurs
+    $this->load->view('templates/header');
+    $this->load->view('documents/ajouter');
+    $this->load->view('templates/footer');
 }</code></pre>
             </div>
         </div>
 
         <div class="project-content">
-            <h2>4. Sécurité & Cybersécurité</h2>
-            <p>Authentification robuste implémentée via la fonction native PHP <code>password_verify()</code> avec chiffrement en <strong>BCRYPT</strong>. Une veille technologique a été rédigée concernant la dépréciation des algorithmes MD5/SHA-1, planifiant une future mise à niveau vers <strong>Argon2id</strong> (standard de référence de l'ANSSI).</p>
+            <div class="competence-tag"><span class="bloc-tag">BLOC 1</span>Compétence 1.5 : Gérer des sauvegardes</div>
+            <p><strong>Descriptif de la preuve :</strong> Planification et exécution manuelle d'une stratégie de sauvegarde des ressources pour parer à toute perte de données en cours de développement solo.</p>
+            <div style="background: rgba(0,0,0,0.02); padding: 20px; border-radius: 8px; border-left: 4px solid var(--secondary-color);">
+                <p><strong>Procédure d'archivage hebdomadaire appliquée :</strong></p>
+                <ol style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li><strong>Fréquence :</strong> Chaque vendredi soir en fin de session de stage.</li>
+                    <li><strong>Export de données :</strong> Génération d'un dump SQL complet (structure et données) via HeidiSQL nommé <code>didiland_docs_YYYYMMDD.sql</code>.</li>
+                    <li><strong>Archivage des sources :</strong> Compression du dossier racine du projet <code>/laragon/www/didiland-docs/</code> au format standardisé ZIP.</li>
+                    <li><strong>Externalisation :</strong> Duplication des archives sur deux supports physiques amovibles distincts (clés USB de sauvegarde) conservés hors du lieu de développement.</li>
+                </ol>
+            </div>
         </div>
 
         <div class="project-content">
-            <h2>5. Gestion des incidents (Le bug résolu)</h2>
-            <p><strong>Incident :</strong> Corruption des caractères spéciaux et accentués (ex : 'Ã©' à la place de 'é') lors de l'extraction des documents sous forme d'archive ZIP générée sous environnement Windows.</p>
-            <p><strong>Résolution :</strong> Implémentation autonome d'un traitement de remappage transparent à l'aide de la fonction native PHP <code>strtr()</code> pour assurer une parfaite portabilité multi-systèmes.</p>
+            <div class="competence-tag"><span class="bloc-tag">BLOC 2</span>Compétence 2.1 & 2.2 : Collecter les demandes / Traiter les évolutions applicatives</div>
+            <p><strong>Descriptif de la preuve :</strong> Développement itératif du module de gestion de notices techniques conformément aux spécifications fonctionnelles émises par la direction (Modèle-Vue-Contrôleur).</p>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Document_model.php (Modèle CI3 — Insertion CRUD)</span>
+                </div>
+                <pre><code>class Document_model extends CI_Model {
+    public function insert_document($data) {
+        // Insertion sécurisée en base de données par requêtes préparées via l'Query Builder
+        return $this->db->insert('DOCUMENT', $data);
+    }
+}</code></pre>
+            </div>
+            
+            <p style="margin-top: 20px;"><strong>Intégration Vue dynamique (DataTables JS) :</strong></p>
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>liste.php (Vue Front-end — Initialisation jQuery / DataTables)</span>
+                </div>
+                <pre><code>$(document).ready(function() {
+    // Liaison dynamique sur le tableau HTML pour un affichage scannable et paginé
+    $('#table-documents').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+        },
+        "pageLength": 10,
+        "responsive": true
+    });
+});</code></pre>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 2</span>Compétence 2.3 : Résoudre des incidents liés aux applications</div>
+            <p><strong>Descriptif de la preuve :</strong> Résolution d'une anomalie logicielle relative à l'encodage système sous Windows, corrompant les caractères accentués lors de la génération à la volée des archives ZIP de téléchargement.</p>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Remappage d'encodage via strtr() (PHP)</span>
+                </div>
+                <pre><code>public function encoder_nom_fichier($nom) {
+    // Tableau d'équivalence pour convertir les accents UTF-8 vers la table CP850 / Windows-1252
+    $trans = array(
+        'é' => 'e', 'è' => 'e', 'ê' => 'e', 'à' => 'a', 
+        'î' => 'i', 'ô' => 'o', 'û' => 'u', 'ç' => 'c'
+    );
+    // Nettoyage de la chaîne de caractères avant intégration au composant ZipArchive
+    return strtr($nom, $trans);
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 3</span>Compétence 3.3 : Participer à l’évolution d’un site Web exploitant les données de l’organisation</div>
+            <p><strong>Descriptif de la preuve :</strong> Réalisation complète de la maquette graphique et de l'interface en responsive web design, interrogeant et affichant dynamiquement le catalogue d'attractions de l'entreprise.</p>
+            
+            <div class="img-placeholder">
+                <i class="fas fa-window-restore" style="font-size: 2rem; margin-bottom: 10px;"></i><br>
+                [Insérer ici la capture d'écran globale du tableau de bord de didiland.docs en fonctionnement]
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 4</span>Compétence 4.1, 4.2 & 4.3 : Mode Projet (Analyse, Planification, Suivi des écarts)</div>
+            <p><strong>Descriptif de la preuve :</strong> Planification des sprints de développement et gestion adaptative du planning suite aux aléas techniques d'encodage rencontrés.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase de Projet</th>
+                        <th>Durée Planifiée</th>
+                        <th>Durée Réelle</th>
+                        <th>Écart / Justification technique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cadrage & Modélisation (GDF, MLD)</td>
+                        <td>4 jours</td>
+                        <td>4 jours</td>
+                        <td>Conforme.</td>
+                    </tr>
+                    <tr>
+                        <td>Développement PHP (MVC Core)</td>
+                        <td>12 jours</td>
+                        <td>14 jours</td>
+                        <td>+2 jours : Nécessité de résoudre le bug d'encodage ZipArchive.</td>
+                    </tr>
+                    <tr>
+                        <td>Recette applicative & Tests métiers</td>
+                        <td>4 jours</td>
+                        <td>4 jours</td>
+                        <td>Conforme (Ajout de triggers de sécurité logicielle).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 5</span>Compétence 5.1 : Réaliser les tests d’intégration et d’acceptation d’un service</div>
+            <p><strong>Descriptif de la preuve :</strong> Code défensif Back-end (règle métier d'intégrité référentielle) empêchant les opérations de suppression d'aboutir en BDD si des dépendances de clés étrangères subsistent.</p>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Attraction_model.php (Vérification relationnelle avant suppression)</span>
+                </div>
+                <pre><code>public function verifier_et_supprimer($id_attraction) {
+    // Exécution d'une requête COUNT pour identifier si des notices référencent ce manège
+    $this->db->where('id_attraction', $id_attraction);
+    $nombre_notices = $this->db->count_all_results('DOCUMENT');
+
+    if ($nombre_notices > 0) {
+        // Règle d'intégrité enfreinte : Suppression rejetée
+        return false;
+    }
+
+    // Autorisation de la suppression car aucune dépendance n'est détectée
+    $this->db->where('id', $id_attraction);
+    return $this->db->delete('ATTRACTION');
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 5</span>Compétence 5.2 & 5.3 : Déployer et accompagner les utilisateurs</div>
+            <p><strong>Descriptif de la preuve :</strong> Configuration de l'environnement de préproduction local sous Laragon et routage DNS local via Hôte Virtuel personnalisé pour simuler les conditions d'un déploiement serveur.</p>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>didiland.docs.conf (Fichier de configuration Apache sous Laragon)</span>
+                </div>
+                <pre><code>&lt;VirtualHost *:80&gt; 
+    DocumentRoot "C:/laragon/www/didiland-docs/"
+    ServerName didiland.docs
+    ServerAlias *.didiland.docs
+    
+    &lt;Directory "C:/laragon/www/didiland-docs/"&gt;
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="competence-tag"><span class="bloc-tag">BLOC 6</span>Compétence 6.1 & 6.2 : Développement professionnel et Veille informationnelle</div>
+            <p><strong>Descriptif de la preuve :</strong> Intégration des recommandations de l'ANSSI relatives aux fonctions de hachage cryptographique et à la gestion des comptes utilisateurs.</p>
+            <div style="background: rgba(0, 230, 118, 0.03); border: 1px solid var(--accent-color); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <p><strong>Note de veille cryptographique :</strong> L'utilisation d'algorithmes de type MD5 ou SHA-1 pour le stockage des mots de passe est proscrite en raison des vulnérabilités aux collisions. Conformément aux recommandations de l'ANSSI, le hachage doit être géré avec des fonctions à coût configurable.</p>
+            </div>
+
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Auth.php (Vérification cryptographique BCRYPT)</span>
+                </div>
+                <pre><code>// Exemple d'implémentation de la vérification applicative
+public function valider_connexion($password_saisi, $password_hache_bdd) {
+    // password_verify gère de manière native la comparaison constante contre les attaques temporelles
+    if (password_verify($password_saisi, $password_hache_bdd)) {
+        return TRUE;
+    }
+    return FALSE;
+}</code></pre>
+            </div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 - Gabriel Pfeiffer - Portfolio BTS SIO</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
