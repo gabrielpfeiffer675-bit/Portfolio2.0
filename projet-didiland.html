@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet didiland.docs | Gabriel Pfeiffer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-header { padding-top: 120px; text-align: center; margin-bottom: 60px; }
+        .project-content { background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.05); }
+        .project-meta { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .meta-item { background: rgba(0, 200, 83, 0.1); color: var(--accent-color); padding: 6px 18px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+        .code-window { background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-left: 5px solid var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .code-header { background: #252526; padding: 10px 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; color: #888; font-size: 0.8rem; }
+        .dots { display: flex; gap: 5px; } .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        pre { margin: 0; padding: 20px; overflow-x: auto; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Projet<span style="color:var(--accent-color)">.Didiland</span></div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="nav-link">← Retour au Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="project-header">
+            <h1 class="gradient-text">Application "didiland.docs"</h1>
+            <div class="project-meta">
+                <span class="meta-item"><i class="fas fa-briefcase"></i> Stage de 1ère Année</span>
+                <span class="meta-item"><i class="fab fa-php"></i> PHP & CodeIgniter 3</span>
+                <span class="meta-item"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <h2>1. Fiche d'identité</h2>
+            <p>Développé en autonomie durant mon stage auprès de M. Roser (Responsable administration) au parc d'attractions Didiland. L'environnement a été déployé localement sur Laragon avec configuration d'un Hôte Virtuel (didiland.docs).</p>
+        </div>
+
+        <div class="project-content">
+            <h2>2. Problématique & Besoins</h2>
+            <p>Le parc gérait ses notices d'attractions, manuels de maintenance et consignes de sécurité obligatoires de manière fragmentée. Le besoin était de centraliser ces ressources critiques au sein d'une plateforme unique avec recherche multicritères et restriction des accès selon les rôles (Admin / Technicien).</p>
+        </div>
+
+        <div class="project-content">
+            <h2>3. Réalisations techniques (Preuves)</h2>
+            <ul>
+                <li><strong>Base de données :</strong> Modélisation normalisée reliant les tables <code>DOCUMENT</code>, <code>ATTRACTION</code>, <code>TYPE_DOCUMENT</code> et <code>UTILISATEUR</code>.</li>
+                <li><strong>Module CRUD :</strong> Gestion dynamique complète des documents avec rendu asynchrone propulsé par l'extension JavaScript DataTables.</li>
+                <li><strong>Intégrité applicative :</strong> Utilisation d'un trigger logique empêchant la suppression d'une attraction si des notices restent orphelines.</li>
+            </ul>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Contrôle d'intégrité référentielle avant suppression (PHP)</span>
+                </div>
+                <pre><code>public function delete_attraction($id) {
+    // 1. Contrôle par requête COUNT du nombre de notices liées
+    $this->db->where('id_attraction', $id);
+    $count = $this->db->count_all_results('DOCUMENT');
+
+    if ($count > 0) {
+        // Transaction annulée pour éviter les données orphelines
+        return FALSE; 
+    } else {
+        $this->db->where('id', $id);
+        return $this->db->delete('ATTRACTION');
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <h2>4. Sécurité & Cybersécurité</h2>
+            <p>Authentification robuste implémentée via la fonction native PHP <code>password_verify()</code> avec chiffrement en <strong>BCRYPT</strong>. Une veille technologique a été rédigée concernant la dépréciation des algorithmes MD5/SHA-1, planifiant une future mise à niveau vers <strong>Argon2id</strong> (standard de référence de l'ANSSI).</p>
+        </div>
+
+        <div class="project-content">
+            <h2>5. Gestion des incidents (Le bug résolu)</h2>
+            <p><strong>Incident :</strong> Corruption des caractères spéciaux et accentués (ex : 'Ã©' à la place de 'é') lors de l'extraction des documents sous forme d'archive ZIP générée sous environnement Windows.</p>
+            <p><strong>Résolution :</strong> Implémentation autonome d'un traitement de remappage transparent à l'aide de la fonction native PHP <code>strtr()</code> pour assurer une parfaite portabilité multi-systèmes.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - Gabriel Pfeiffer - Portfolio BTS SIO</p>
+    </footer>
+</body>
+</html>

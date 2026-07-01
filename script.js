@@ -132,47 +132,45 @@ if(scrollTopBtn){
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-// --- 6. GESTION DES PROJETS ---
+// --- 6. GESTION DES PROJETS (ADAPTÉE BTS SIO) ---
 const mesProjets = [
     {
-        id: "freelance-web",
-        titre: "Création Sites Web (Freelance)",
+        id: "didiland-docs",
+        titre: "Application 'didiland.docs'",
         categorie: "web",
         image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        tags: ["Micro-entreprise", "Wordpress", "SEO", "Relation Client"],
-        description_courte: "Services de création web pour professionnels.",
-        description_longue: "<strong>Statut :</strong> Micro-entrepreneur.<br>J'accompagne les artisans et PME dans leur transition numérique. <br>• Analyse des besoins client.<br>• Développement de sites vitrines (CMS ou sur-mesure).<br>• Optimisation SEO et formation à la prise en main.",
+        tags: ["PHP (CodeIgniter 3)", "Architecture MVC", "MySQL", "DataTables JS"],
+        description_courte: "Centralisation et sécurisation des documents et notices techniques du parc d'attractions.",
+        description_longue: `
+            <strong>1. Fiche d'identité :</strong> Réalisé en autonomie durant mon stage auprès de M. Roser (Responsable administration). Déployé localement sur Laragon avec configuration d'un Hôte Virtuel.<br><br>
+            <strong>2. Problématique & Besoins :</strong> Centraliser les notices constructeurs, manuels de maintenance et consignes de sécurité éparpillés, avec recherche multicritères et restriction des accès applicatifs (Admin / Technicien).<br><br>
+            <strong>3. Réalisations techniques (Preuves) :</strong> 
+            • Base de données relationnelle normalisée (tables <code>DOCUMENT</code>, <code>ATTRACTION</code>, <code>TYPE_DOCUMENT</code>, <code>UTILISATEUR</code>). 
+            • Module CRUD complet et intégration de DataTables JS pour un affichage asynchrone dynamique.
+            • Sécurisation par code (requête <code>COUNT</code>) bloquant la suppression d'une attraction si des notices y sont encore liées afin d'éviter les données orphelines.<br><br>
+            <strong>4. Sécurité & Cybersécurité :</strong> Authentification gérée avec la fonction native PHP <code>password_verify()</code> et mots de passe hachés en BCRYPT. Veille menée sur l'obsolescence de MD5/SHA-1 et prévision de migration vers Argon2id (recommandé par l'ANSSI).<br><br>
+            <strong>5. Résolution d'incident :</strong> Correction d'un bug d'encodage sous Windows (caractères corrompus type 'Ã©' lors de l'export ZIP des notices) résolu de manière autonome via la fonction native <code>strtr()</code> pour remapper proprement les chaînes.
+        `,
         lien: "#contact" 
     },
     {
-        id: "serre-iot",
-        titre: "Serre Autonome & IoT",
-        categorie: "app",
-        image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        tags: ["ESP32", "Node-RED", "MQTT", "C++", "Raspberry Pi"],
-        description_courte: "Système de régulation automatique via MQTT et Node-RED.",
-        description_longue: "Ce projet dispose d'une page dédiée.", 
-        lien: "projet-serre.html" 
-    },
-    {
-        id: "stock-web",
-        titre: "Gestion de Stock",
+        id: "jpo-data",
+        titre: "Application 'JPO-Data'",
         categorie: "web",
         image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        tags: ["PHP", "MVC", "MySQL"],
-        description_courte: "Application web de gestion logistique complète.",
-        description_longue: "Développement d'une solution complète pour la gestion des entrées/sorties de stock.<br>• Architecture MVC pour séparer la logique métier.<br>• Base de données MySQL relationnelle.<br>• Sécurisation des accès (Sessions PHP).",
-        lien: "projet-stock.html" 
-    },
-    {
-        id: "calc-csharp",
-        titre: "Calculatrice Scientifique",
-        categorie: "app",
-        image: "https://images.unsplash.com/photo-1587145820266-a5951ee1f620?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        tags: ["C#", "WinForms", ".NET"],
-        description_courte: "Calculatrice scientifique avec historique.",
-        description_longue: "Application Windows développée en C# (WinForms).<br>• Gestion de la Notation Polonaise Inverse (RPN).<br>• Sauvegarde de l'historique des calculs dans un fichier local.<br>• Gestion des exceptions mathématiques.",
-        lien: "https://github.com/gabrielpfeiffer675-bit"
+        tags: ["HTML5 / CSS3", "MySQL", "Modélisation 3NF", "Formspree API"],
+        description_courte: "Informatisation de la collecte et de l'analyse des données visiteurs lors des Portes Ouvertes du lycée.",
+        description_longue: `
+            <strong>1. Fiche d'identité :</strong> Projet pédagogique de groupe réalisé au Lycée René Cassin (Strasbourg). Maquettage d'interface sur Penpot et intégration responsive complète.<br><br>
+            <strong>2. Problématique & Besoins :</strong> Remplacer les fiches d'accueil papier pour suivre l'affluence en temps réel et analyser l'intérêt des profils (Générale, STI2D) vers les filières du BTS SIO.<br><br>
+            <strong>3. Réalisations techniques (Preuves) :</strong> 
+            • Conception d'un dictionnaire de 14 données, d'un GDF et d'un MLD validé en 3ème Forme Normale (3NF).
+            • Script SQL complet (<code>jpo.sql</code>) structurant 3 tables imbriquées avec clés primaires/étrangères isolées hors-table via <code>ALTER TABLE</code>.
+            • Requêtage décisionnel avancé (jointures complexes, <code>COUNT</code>, <code>GROUP BY</code>) pour générer les indicateurs d'affluence par filière et plage horaire.<br><br>
+            <strong>4. Sécurité & RGPD (Conformité) :</strong> Flux chiffrés de bout en bout en HTTPS via l'API Formspree (protection contre les attaques Man-in-the-Middle). Intégration du Privacy by Design : bandeau d'information RGPD et case de consentement obligatoire (attribut <code>required</code>) avec durée de conservation limitée à 1 an.<br><br>
+            <strong>5. Résolution d'incident :</strong> Résolution d'une erreur MySQL #1452 (Foreign key constraint fails). Diagnostic : la table parente <code>FORMATION</code> commençait à l'ID 3 (salles réelles), provoquant l'échec des tests unitaires ciblant les codes 1 et 2. Résolution : Alignement de l'intégrité référentielle en mettant à jour le script SQL pour insérer l'ensemble exhaustif des salles (1 à 221) avant les transactions de test.
+        `,
+        lien: "#contact" 
     }
 ];
 
@@ -191,9 +189,7 @@ function afficherProjets(filtre = 'all') {
             card.style.animation = 'fadeIn 0.5s ease forwards';
             const tagsHtml = projet.tags.map(tag => `<li>${tag}</li>`).join('');
 
-            const boutonHtml = projet.lien && projet.lien.includes('.html') 
-                ? `<a href="${projet.lien}" class="btn-details">Voir le détail</a>`
-                : `<button class="btn-details" onclick="ouvrirModale('${projet.id}')">En savoir plus</button>`;
+            const boutonHtml = `<button class="btn-details" onclick="ouvrirModale('${projet.id}')">En savoir plus</button>`;
 
             card.innerHTML = `
                 <div class="card-image"><img src="${projet.image}" alt="${projet.titre}" loading="lazy"></div>
@@ -228,7 +224,7 @@ window.ouvrirModale = (idProjet) => {
              linkBtn.textContent = "Voir le code / Site";
         } else if (projet.lien === "#contact") {
              linkBtn.href = "#contact";
-             linkBtn.textContent = "Me contacter";
+             linkBtn.textContent = "Me contacter / Voir la fiche";
              linkBtn.onclick = () => { if(modal) modal.style.display = "none"; };
         } else {
              linkBtn.style.display = "none";

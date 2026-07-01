@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet JPO-Data | Gabriel Pfeiffer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-header { padding-top: 120px; text-align: center; margin-bottom: 60px; }
+        .project-content { background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.05); }
+        .project-meta { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .meta-item { background: rgba(0, 123, 255, 0.1); color: #00b0ff; padding: 6px 18px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+        .code-window { background: #1e1e1e; color: #d4d4d4; border-radius: 10px; overflow: hidden; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border-left: 5px solid #00b0ff; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .code-header { background: #252526; padding: 10px 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; color: #888; font-size: 0.8rem; }
+        .dots { display: flex; gap: 5px; } .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        pre { margin: 0; padding: 20px; overflow-x: auto; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Projet<span style="color:#00b0ff">.JPO</span></div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="nav-link">← Retour au Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="project-header">
+            <h1 class="gradient-text">Application "JPO-Data"</h1>
+            <div class="project-meta">
+                <span class="meta-item"><i class="fas fa-university"></i> Projet Lycée René Cassin</span>
+                <span class="meta-item"><i class="fas fa-code"></i> HTML5 / CSS3 Responsive</span>
+                <span class="meta-item"><i class="fas fa-database"></i> Modélisation 3NF</span>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <h2>1. Fiche d'identité</h2>
+            <p>Projet d'équipe à but pédagogique réalisé en cours de formation pour le Lycée René Cassin (Strasbourg). Il intègre du maquettage UI sur Penpot et une adaptation responsive complète.</p>
+        </div>
+
+        <div class="project-content">
+            <h2>2. Problématique & Besoins</h2>
+            <p>Informatiser l'intégralité de la collecte des fiches d'information visiteurs lors des Journées Portes Ouvertes afin de supprimer les supports papier obsolètes, suivre en temps réel l'affluence du public et analyser l'intérêt des profils entrants (STI2D, Générale) par rapport aux options du BTS SIO.</p>
+        </div>
+
+        <div class="project-content">
+            <h2>3. Réalisations techniques (Preuves)</h2>
+            <ul>
+                <li><strong>Modélisation relationnelle :</strong> Établissement d'un dictionnaire de 14 données, d'un Graphe de Dépendances Fonctionnelles (GDF) et d'un MLD normalisé en <strong>3NF</strong>.</li>
+                <li><strong>Scripting SGBD (MySQL) :</strong> Écriture de <code>jpo.sql</code> générant 3 tables imbriquées (<code>FORMATION</code>, <code>VISITEUR</code>, <code>VISITE</code>) avec contraintes de clés déclarées proprement hors-table via l'instruction <code>ALTER TABLE</code>.</li>
+                <li><strong>Requêtage Décisionnel :</strong> Formulation de requêtes d'agrégation complexes pour extraire instantanément le flux de visiteurs par filière et par créneau horaire.</li>
+            </ul>
+            
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                    <span>Déclaration standardisée des contraintes d'intégrité relationnelles (SQL)</span>
+                </div>
+                <pre><code>ALTER TABLE VISITE 
+ADD CONSTRAINT FK_VISITE_VISITEUR 
+FOREIGN KEY (numVisi) REFERENCES VISITEUR(numVisi);
+
+ALTER TABLE VISITE 
+ADD CONSTRAINT FK_VISITE_FORMATION 
+FOREIGN KEY (codeForm) REFERENCES FORMATION(codeForm);</code></pre>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <h2>4. Sécurité & RGPD (Conformité)</h2>
+            <p>Le transit des flux d'informations est protégé contre les attaques de type <em>Man-in-the-Middle</em> via des requêtes HTTPS chiffrées interrogeant l'API Formspree. La conformité RGPD (Privacy by Design) est respectée par l'ajout d'une case de consentement obligatoire (attribut <code>required</code>) et d'un bandeau stipulant la purge automatique sous un délai de 1 an.</p>
+        </div>
+
+        <div class="project-content">
+            <h2>5. Gestion des incidents (Le bug résolu)</h2>
+            <p><strong>Incident :</strong> Apparition récurrente de l'erreur MySQL #1452 (<em>Foreign key constraint fails</em>) lors des phases de tests d'insertions groupées.</p>
+            <p><strong>Résolution :</strong> L'analyse a révélé que la table parente <code>FORMATION</code> avait été initialisée avec des identifiants réels de salles démarrant au numéro 3, rendant orphelines les requêtes de tests qui ciblaient les ID génériques 1 et 2. Le script d'insertion a été corrigé pour inclure de manière exhaustive les salles 1 à 221 en amont des tests, rétablissant la conformité relationnelle.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - Gabriel Pfeiffer - Portfolio BTS SIO</p>
+    </footer>
+</body>
+</html>
