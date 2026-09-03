@@ -328,4 +328,4 @@ async function handleSubmit(event) {
 }
 if(form) {
     form.addEventListener("submit", handleSubmit);
-}
+}   
